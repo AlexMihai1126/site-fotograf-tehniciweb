@@ -19,61 +19,94 @@
     </head>
     <body>
         <header>
-            <h1>Proiect web - planificarea proiectului</h1>
+            <h1>Alex Mihai - Fotograf</h1>
             <nav>
                 <ul>
-                    <li><a href="#regulament">Regulament</a>
+                    <li><a href="#top">Acasa</a>
                         <ul>
-                            <li><a href="#bonus">Bonus</a></li>
-                            <li><a href="#altele">Precizari</a></li>
+                            <li><a href="#s1">Cum am inceput</a></li>
+                            <li><a href="#s2">Ce vreau sa fac mai departe</a></li>
+                            <li><a href="#s3">Ce aparat foto folosesc?</a></li>
+                            <li><a href="#summary">Summary</a></li>
                         </ul>
                     </li>
-                    <li><a href="#etape">Etape</a></li>
+                    <li><a href="#">Portofoliu</a></li>
+                    <li><a href="#">Servicii</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Despre mine</a></li>
                 </ul>
             </nav>
         </header>
         <main>
-            <section id="regulament">
-                <h2>Regulament de notare a proiectului</h2>
-                <p>În acest document vom avea împărțirea în etape a proiectului cu detalii despre <i lang="en">tasks</i> și penalizări.</p>
-                <section id="bonus">
-                    <h3>Bonusuri și penalizări</h3>
-                    <p style="font-weight:bold;">În saptămâna cu punctaj normal poate fi în continuare cu bonus în următoarele situații:</p>
+            <section id="top">
+                <h2>Fotograf</h2>
+                <p>Salut! Eu sunt Alex, student la Facultatea de Matematica si Informatica cu o pasiune pentru fotografie.</p>
+                <section id="s1">
+                    <h3>Cum am inceput acest hobby</h3>
+                    <p>In <s>2020</s> 2019 mi-am cumparat primul aparat foto</p>
+                </section>
+                <section id="s2">
+                    <h3>Ce vreau sa fac mai departe?</h3>
                     <ol>
                         <li>
-                            studentul a prezentat în săptămâna cu bonus dar avea greșeli sau taskuri incomplete și a decis să îndrepte situația
+                            Sa incep sa fac bani din aceasta pasiune
                         </li>
                         <li>
-                            am reprogramat pe cineva din motive justificate:
+                            Sa fotografiez evenimente:
                             <ul>
-                            <li>probleme tehnice (unuia dintre noi nu ne-a mers calculatorul sau netul etc)</li>
-                            <li>probleme administrative (nu a putut prezenta avand probleme cu căminul, cu secretariatul etc)</li>
-                            <li>probleme de sănătate</li>
-                            <li>e om serios și ar fi terminat complet tema dar s-a aglomerat cu alte materii etc.</li>
+                            <li>nunti</li>
+                            <li>botezuri</li>
                             </ul>
+                            <li>Sa fotografiez masini (pentru pasionati: <i>carspotting</i>)</li>
                             </li>
-                        </li>
                         <li>
-                            o amânare oficială, de comun acord cu toți studenții, fiind necesare explicații suplimentare la curs/laborator
+                            Sa fac fotografie de portret
                         </li>
                     </ol>
-                    <p><strong>Atentie! Perioada de punctaj normal nu va avea bonus aplicat dacă studentul se prezintă pentru prima oară cu etapa proiectului rezolvată și fără o amânare justificată.</strong></p>
-                    <p><b>Bonusul</b> e în valoare de <s>10%</s> <ins style="font-weight:bold;text-decoration:none;">15%</ins></p>
-                </section>
-                <section id="altele">
-                    <h3>Alte precizari</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium quia aut corporis illum nulla numquam sapiente vitae, eius dolorem culpa quidem incidunt, labore aperiam, atque adipisci non qui aspernatur et!</p>
-                </section>
+                    <p><strong>Atentie! Acesta inca este un site in lucru si veti afla mai multe despre mine in viitor!</strong></p><br>
+                    <h3>Link catre Google - TEST</h3>
+                    <a href="http://google.com" target="_blank">Google</a>
+                    <a href="./resources/download.pdf" download="file.pdf">Descarca un PDF!</a>
             </section>
-            <section id="etape">
-                <h2>Etapele proiectului</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo sunt natus, nesciunt nam placeat aliquid similique obcaecati, magni quidem culpa asperiores praesentium laudantium illum! Libero eveniet est reprehenderit doloremque! Delectus.</p>
+            <section id="s3">
+                <h2>IFrame</h2>
+                <p>Apasa pe unul din link-uri sa vezi un review al aparatului foto pe care il am.</p>
+                <a href="https://www.youtube.com/embed/yVpLoNYeG0E" target="videoplayer">Review-ul de la DPReviewTV</a><br>
+                <a href="https://www.youtube.com/embed/QJsEww2j7Ro" target="videoplayer">Review-ul de la Gerald Undone</a><br>
+                <iframe  name="videoplayer" width="560" height="315" src="https://www.youtube.com/embed/QJsEww2j7Ro" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </section>
+            <figure>
+                <picture>
+                    <source media="(max-width:600px)" srcset="./resources/img/20230218_130112413_iOS_small.jpg">
+                    <source media="(max-width:1000px)" srcset="./resources/img/20230218_130112413_iOS_medium.jpg">
+                    <img src="./resources/img/20230218_130112413_iOS.jpg" title="aparatfoto hover">
+                </picture>
+                <figcaption>Aparat foto</figcaption>
+            </figure>
+            <section id="summary">
+                <details>
+                    <summary>Test 1</summary>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem aperiam fuga quos nesciunt enim nostrum voluptatibus eum odit, suscipit repudiandae similique accusantium perferendis consequuntur beatae? Quasi quos laborum molestiae tempore.</p>
+                </details>
+                <details>
+                    <summary>Test 2</summary>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem aperiam fuga quos nesciunt enim nostrum voluptatibus eum odit, suscipit repudiandae similique accusantium perferendis consequuntur beatae? Quasi quos laborum molestiae tempore.</p>
+                </details>
+                <details>
+                    <summary>Test 3</summary>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem aperiam fuga quos nesciunt enim nostrum voluptatibus eum odit, suscipit repudiandae similique accusantium perferendis consequuntur beatae? Quasi quos laborum molestiae tempore.</p>
+                </details>
             </section>
         </main>
         <footer>
+            <a href="mailto:am.photography611@gmail.com">Trimite-mi un mail!</a>
+            <a href="tel:+0781737910">Numar de telefon</a>
+            <a href="https://wa.link/ihx6zm">Whatsapp contact</a>
+            <a href="#top">Inapoi la inceputul paginii</a>
             <address>
-                Strada Academiei 1
+                <a href="https://goo.gl/maps/YvmPjtMAc8G4XcBD7" target="_blank">Adresa sediului firmei</a>
             </address>
+            <small>Copyright &copy; 2023 Alex Mihai <time datetime="2023-02-27">27 Februarie 2023</time></small>
         </footer>
     </body>
 </html>
