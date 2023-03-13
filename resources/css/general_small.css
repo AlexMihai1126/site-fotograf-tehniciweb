@@ -1,0 +1,29 @@
+html{
+    font-size: 10px;
+    font-family: Quicksand;
+}
+
+body{
+    --spatiere_pag: 10px; /*et3 t1*/
+    --padding_section: 5px; /*et3 t1*/
+}
+
+#grid-pagina{
+    grid-template-columns: repeat(1,1fr);
+    grid-template-areas: "z-welcome z-welcome z-welcome"
+                         "z-produse z-produse z-promotii"
+                         "z-fig1 z-orar z-orar"
+                         "z-fig2 z-orar z-orar"
+                         "z-fig3 z-orar z-orar"
+                         "z-anunturi z-anunturi z-anunturi"
+                         "z-intrebari z-intrebari z-intrebari"; /*de schimbat*/
+}
+
+#grid-pagina > *{
+    margin-bottom: 15px; /*et3*/
+}
+
+body *{
+    animation: none;
+    transition: none;
+} /*inlocuim pt elementele care vrem sa dispara animatiile */

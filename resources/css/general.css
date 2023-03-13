@@ -1,0 +1,93 @@
+html{
+    font-size: 14px;
+    font-family: Quicksand;
+    transition: font-size 0.15s linear;
+} /* marime font baza pagina */
+
+body{
+    --body_color:white;
+    --text_color:black;
+    --spatiere_pag: 50px; /*et3 t1*/
+    --padding_section: 15px;/*et3 t1*/
+    --main_color: #03D4DB;
+    --hover_color:#02969C;
+    --clicked_link: #01595C;
+    --accent_color:#02BBC2;
+    --menu_item_color:#02E0E8;
+    background-color: var(--body_color);
+    color: var(--text_color);
+    padding-left: var(--spatiere_pag);
+    padding-right: var(--spatiere_pag);
+    min-width: 450px;
+} /* setari body plus definirea culorilor */
+
+body.dark{
+    --body_color_dark:white;
+    --text_color_dark:black;
+    background-color: var(--body_color_dark);
+    color: var(--text_color_dark);
+}
+
+h1{
+    font-size: 2rem;
+}
+
+h2{
+    font-size: 1.75rem;
+} /*dimensiune font derivata din dimensiunea de baza*/
+
+#grid-pagina > *{
+    border: 3px solid; /*et2*/
+    padding: var(--padding_section); /*et3 t1*/
+} /* border tuturor elementelor */
+
+#grid-pagina > section{
+    border: 3px var(--accent_color) solid;
+} /* border la fiecare sectiune */
+
+#grid-pagina{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-areas: "z-prezentare z-prezentare z-prezentare z-prezentare"
+                         "z-prezentare z-prezentare z-prezentare z-prezentare"
+                         "z-tabel z-tabel z-calendar z-calendar"
+                         "z-tabel z-tabel z-calendar z-calendar"
+                         "z-utilizatori z-userdata z-userdata z-siteinfo"
+                         "z-others z-others z-others z-others";
+    gap: 20px 10px; /*grid-row-gap grid-column-gap etapa 3*/
+} /* grid-ul de la task 4 et2 */
+
+#prezentare{
+    grid-area: z-prezentare;
+}
+#tabel{
+    grid-area: z-tabel;
+}
+#calendar{
+    grid-area: z-calendar;
+}
+ 
+#anunturi{
+    grid-area: z-anunturi;
+}
+ 
+#utilizatori{
+    grid-area: z-utilizatori;
+}
+#userdata{
+    grid-area: z-userdata;
+}
+#siteinfo{
+    grid-area: z-siteinfo;
+}
+ 
+#others{
+    grid-area: z-others;
+}
+
+
+img{
+    width: 100%;
+    max-width: 400px;
+    min-width: 125px;
+} /*et3*/

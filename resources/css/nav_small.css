@@ -1,0 +1,60 @@
+body{
+    --btn_width:100%;
+    --btn_height: 35px;
+}
+
+#hamburger{
+    display: block;
+    margin: 0;
+}
+
+#hamburger img{
+    height: var(--btn_height);
+    width: auto;
+    min-width: auto;
+    margin: 0;
+    display: block; /*facem imaginea sa nu mai se comporte inline */
+}
+
+ul.menu{
+    display: none;
+}
+
+#ch-menu:checked + ul.menu{
+    display: block;
+    animation-name: menu_animation;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transform-origin: center;
+}
+
+@keyframes menu_animation{
+    0%{
+        opacity: 0;
+        transform: scale(0.5,0);
+    }
+    50%{
+        transform: scale(0.5,1);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1,1);
+    }
+} /*de schimbat cu cerinta custom */
+
+.mainmenu:nth-child(even){
+    border-top:none;
+    border-bottom:none;
+    border-left: var(--border_thickness_menu) solid var(--btn_border_color);
+    border-right: var(--border_thickness_menu) solid var(--btn_border_color);
+} /* pt cele pare scoate border la stanga si dreapta*/
+
+.submenu:nth-child(odd){
+    border-bottom:none;
+} /* pt cele impare scoate border sus si jos*/
+
+.submenu:nth-child(3){
+    border-top:none;
+} 

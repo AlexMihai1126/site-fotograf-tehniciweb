@@ -16,28 +16,42 @@
         <meta name="msapplication-TileColor" content="#00aba9">
         <meta name="msapplication-config" content="./resources/img/favicon/browserconfig.xml">
         <meta name="theme-color" content="#ffffff">
+        <link rel="stylesheet" href="./resources/css/general.css" type="text/css">
+        <link rel="stylesheet" href="./resources/css/general_medium.css" type="text/css" media="screen and (max-width:1000px)">
+        <link rel="stylesheet" href="./resources/css/general_small.css" type="text/css" media="screen and (max-width:700px)">
+        <link rel="stylesheet" href="./resources/css/nav.css" type="text/css">
+        <link rel="stylesheet" href="./resources/css/nav_medium.css" type="text/css" media="screen and (max-width:1000px)">
+        <link rel="stylesheet" href="./resources/css/nav_small.css" type="text/css" media="screen and (max-width:700px)">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> <!--PENTRU FONT DIN GOOGLE API - Quicksand-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/> <!--pentru font awesome-->
     </head>
     <body>
         <header>
             <h1>Alex Mihai - Fotograf</h1>
-            <nav>
-                <ul>
-                    <li><a href="#top">Acasa</a>
-                        <ul>
-                            <li><a href="#s1">Cum am inceput</a></li>
-                            <li><a href="#s2">Ce vreau sa fac mai departe</a></li>
-                            <li><a href="#s3">Ce aparat foto folosesc?</a></li>
-                            <li><a href="#summary">Summary</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Portofoliu</a></li>
-                    <li><a href="#">Servicii</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Despre mine</a></li>
-                </ul>
-            </nav>
         </header>
         <main>
+            <nav>
+                <label id="hamburger" for="ch-menu">
+                    <img src="./resources/img/hamburger_menu.png" alt="menu">
+                </label>
+                <input id="ch-menu" type="checkbox">
+                <ul class="menu">
+                    <li class="mainmenu"><div id="acasa">Acasa</div><div id="acasa_mediu"><span class="fas fa-solid fa-house"></span></div>
+                        <ul>
+                            <li class="submenu"><a href="#s1">Cum am inceput</a></li>
+                            <li class="submenu"><a href="#s2">Ce vreau sa fac mai departe</a></li>
+                            <li class="submenu"><a href="#s3">Ce aparat foto folosesc?</a></li>
+                            <li class="submenu"><a href="#summary">Summary</a></li>
+                        </ul>
+                    </li>
+                    <li class="mainmenu"><a href="#">Portofoliu</a></li>
+                    <li class="mainmenu"><a href="#">Servicii</a></li>
+                    <li class="mainmenu"><a href="#">Contact</a></li>
+                    <li class="mainmenu"><a href="#">Despre mine</a></li>
+                </ul>
+            </nav>
             <section id="top">
                 <h2>Fotograf</h2>
                 <p>Salut! Eu sunt Alex, student la Facultatea de Matematica si Informatica cu o pasiune pentru fotografie.</p>
@@ -58,7 +72,6 @@
                             <li>botezuri</li>
                             </ul>
                             <li>Sa fotografiez masini (pentru pasionati: <i>carspotting</i>)</li>
-                            </li>
                         <li>
                             Sa fac fotografie de portret
                         </li>
@@ -106,7 +119,7 @@
             <address>
                 <a href="https://goo.gl/maps/YvmPjtMAc8G4XcBD7" target="_blank">Adresa sediului firmei</a>
             </address>
-            <small>Copyright &copy; 2023 Alex Mihai <time datetime="2023-02-27">27 Februarie 2023</time></small>
+            <small>Copyright &copy; 2023 Alex Mihai <time datetime="2023-03-10">10 Martie 2023</time></small>
         </footer>
     </body>
 </html>

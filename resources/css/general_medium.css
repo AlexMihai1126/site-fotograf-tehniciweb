@@ -1,0 +1,20 @@
+html{
+    font-size: 12px;
+    font-family: Quicksand;
+}
+
+body{
+    --spatiere_pag: 30px;/*et3 t1*/
+    --padding_section:10px; /*et3 t1*/
+}
+
+#grid-pagina{
+    grid-template-columns: repeat(2,1fr);
+    grid-template-areas: "z-welcome z-welcome z-welcome"
+                         "z-produse z-produse z-promotii"
+                         "z-fig1 z-orar z-orar"
+                         "z-fig2 z-orar z-orar"
+                         "z-fig3 z-orar z-orar"
+                         "z-anunturi z-anunturi z-anunturi"
+                         "z-intrebari z-intrebari z-intrebari"; /*de schimbat*/
+}

@@ -1,0 +1,12 @@
+body{
+    --btn_width:100px;
+    --btn_height: 35px;
+}
+
+#acasa_mediu{
+    display: block;
+}
+
+#acasa{
+    display: none;
+}
