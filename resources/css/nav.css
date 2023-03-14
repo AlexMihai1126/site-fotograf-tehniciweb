@@ -17,6 +17,7 @@ nav{
     position: sticky; /* ca sa ramana mereu vizibil */
     top: 0;
     margin-left: calc(-1*var(--spatiere_pag));
+    margin-bottom: 20px;
 }
 
 ul.menu{

@@ -1,5 +1,5 @@
 html{
-    font-size: 14px;
+    font-size: 15px;
     font-family: Quicksand;
     transition: font-size 0.15s linear;
 } /* marime font baza pagina */
@@ -50,7 +50,7 @@ h2{
     grid-template-columns: repeat(4,1fr);
     grid-template-areas: "z-prezentare z-prezentare z-prezentare z-prezentare"
                          "z-prezentare z-prezentare z-prezentare z-prezentare"
-                         "z-tabel z-tabel z-calendar z-calendar"
+                         "z-tabel z-tabel z-anunturi z-anunturi"
                          "z-tabel z-tabel z-calendar z-calendar"
                          "z-utilizatori z-userdata z-userdata z-siteinfo"
                          "z-others z-others z-others z-others";
