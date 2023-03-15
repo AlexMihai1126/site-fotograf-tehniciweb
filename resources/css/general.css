@@ -91,3 +91,107 @@ img{
     max-width: 400px;
     min-width: 125px;
 } /*et3*/
+
+#link-top{
+    --linktop_size:40px;
+    --linktop_round:20px;
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right:25px;
+    opacity: 0.5;
+    border: 2px solid var(--menu_item_color);
+    width: var(--linktop_size);
+    height: var(--linktop_size);
+    text-align: center;
+    line-height: var(--linktop_size);
+    border-top-right-radius:var(--linktop_round) ;
+    border-top-left-radius:var(--linktop_round) ;
+    font-size: 2.7rem;
+    color: var(--menu_item_color);
+    background-color: lightgray;
+    text-decoration: none;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 10px 1px grey;
+}
+
+#link-top a:visited{
+    color: var(--menu_item_color);
+}
+
+#link-top:hover{
+    opacity: 1;
+    font-size: 3.35rem;
+    background-color: var(--hover_color);
+    transition: all 0.4s linear;
+}
+
+#sageata{
+    display: block;
+    text-align: center;
+}
+
+#tabel_container{
+    width: 100%;
+    display: block;
+    min-width: 600px;
+    overflow-x: hidden;/*SCROLLBAR LA TABEL NU FUNCTIONEAZA */
+}
+
+#t1{
+    display: block;
+}
+
+table{
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+#t1 th, td {
+    --c1:var(--menu_item_color);
+    --c2:var(--hover_color);
+    --table_border:1px;
+    border: var(--table_border) solid black;
+    width: 200px;
+    
+}
+
+#t1 tr:nth-child(even) td {
+    border-left-color: var(--c1);
+    border-right-color: var(--c2);
+  }
+  
+#t1 tr:nth-child(odd) td {
+    border-left-color: var(--c2);
+    border-right-color: var(--c1);
+  }  
+
+#t1 thead{
+    border: calc(2 * var(--table_border)) solid black;
+}
+
+#t1 caption{
+    caption-side: bottom;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#t1 tr:hover{
+    
+    transition: all 0.5s linear;
+}
+
+.table_labels{
+    font-weight:bold ;
+    text-align: center;
+}
+
+.camera_icon{
+    display: flex;
+}
+
+.main_heading{
+    text-align: center;
+    color: var(--menu_item_color);
+}

@@ -10,13 +10,15 @@ body{
 
 #grid-pagina{
     grid-template-columns: repeat(1,1fr);
-    grid-template-areas: "z-welcome z-welcome z-welcome"
-                         "z-produse z-produse z-promotii"
-                         "z-fig1 z-orar z-orar"
-                         "z-fig2 z-orar z-orar"
-                         "z-fig3 z-orar z-orar"
-                         "z-anunturi z-anunturi z-anunturi"
-                         "z-intrebari z-intrebari z-intrebari"; /*de schimbat*/
+    grid-template-areas: "z-prezentare"
+                         "z-tabel"
+                         "z-anunturi"
+                         "z-calendar"
+                         "z-utilizatori"
+                         "z-userdata"
+                         "z-siteinfo"
+                         "z-others";
+                         
 }
 
 #grid-pagina > *{
@@ -27,3 +29,13 @@ body *{
     animation: none;
     transition: none;
 } /*inlocuim pt elementele care vrem sa dispara animatiile */
+
+#table_container{
+    overflow-x: scroll;
+} /*nefunctional*/
+
+.camera_icon{
+    display: none;
+    animation: none;
+    transition: none;
+}
