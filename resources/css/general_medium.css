@@ -11,10 +11,9 @@ body{
 #grid-pagina{
     grid-template-columns: repeat(2,1fr);
     grid-template-areas: "z-prezentare z-prezentare"
-                         "z-prezentare z-prezentare"
                          "z-tabel z-tabel"
-                         "z-anunturi z-calendar"
-                         "z-utilizatori z-calendar"
-                         "z-siteinfo z-anunturi"
+                         "z-anunturi z-anunturi"
+                         "z-calendar z-utilizatori "
+                         "z-userdata z-siteinfo "
                          "z-others z-others";
 }
