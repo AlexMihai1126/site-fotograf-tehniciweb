@@ -10,6 +10,7 @@ body{
 }
 
 #grid-pagina{
+    display: block;
     grid-template-columns: repeat(1,1fr);
     grid-template-areas: "z-prezentare"
                          "z-tabel"
@@ -32,8 +33,12 @@ body *{
 } /*inlocuim pt elementele care vrem sa dispara animatiile */
 
 #table_container{
-    overflow-x: scroll;
     min-width: auto;
+} 
+
+#t1{
+    overflow-x: scroll;
+    width: auto;
 } /*nefunctional*/
 
 .camera_icon{
