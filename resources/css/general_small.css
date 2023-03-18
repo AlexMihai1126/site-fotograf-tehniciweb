@@ -6,6 +6,7 @@ html{
 body{
     --spatiere_pag: 10px; /*et3 t1*/
     --padding_section: 5px; /*et3 t1*/
+    min-width: 300px;
 }
 
 #grid-pagina{
@@ -32,6 +33,7 @@ body *{
 
 #table_container{
     overflow-x: scroll;
+    min-width: auto;
 } /*nefunctional*/
 
 .camera_icon{

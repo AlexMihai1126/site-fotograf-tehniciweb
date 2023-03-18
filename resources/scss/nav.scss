@@ -8,6 +8,16 @@ body{
     --btn_border_color: black;
 }
 
+%cod_btn{
+    display: block;
+    line-height: calc(var(--btn_height) - 2* var(--border_thickness_menu)); /*pt a avea border mai mare, scadem de 2 ori borderul adica de sus si jos - aliniere corecta text */
+    width: 100%;
+    height: 100%;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
 nav{
     padding: 0;
     margin: 0;
@@ -41,6 +51,12 @@ ul.menu{
             opacity: 1;
             transform: scale(1,1);
         }
+        a{
+            @extend %cod_btn;
+        }
+        div{
+            @extend %cod_btn;
+        }
     }
 
     > li{
@@ -53,6 +69,11 @@ ul.menu{
             background-color: var(--hover_color);
         } /*afiseaza submeniu pe hover*/
     } /*et2-meniu, rezolva pb cu flexbox */
+    * li{
+        &:hover{
+            background-color: var(--hover_color);
+        }
+    }
     
     ul{
         padding: 0;
@@ -75,20 +96,12 @@ ul.menu{
 } /* pt cele pare scoate border la stanga si dreapta*/
 
 .submenu:nth-child(odd){
-    border-top:none;
     border-bottom:none;
 } /* pt cele impare scoate border sus si jos*/
 
-
-ul.menu li a, ul.menu li div {
-    display: block;
-    line-height: calc(var(--btn_height) - 2* var(--border_thickness_menu)); /*pt a avea border mai mare, scadem de 2 ori borderul adica de sus si jos - aliniere corecta text */
-    width: 100%;
-    height: 100%;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-}
+.submenu:nth-child(3){
+    border-top:none;
+} 
 
 #acasa_mediu{
     display: none;

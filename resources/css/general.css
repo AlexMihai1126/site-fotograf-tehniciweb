@@ -36,6 +36,10 @@ h2{
     font-size: 1.75rem;
 } /*dimensiune font derivata din dimensiunea de baza*/
 
+#watermark{
+    display: none;
+}
+
 #grid-pagina > *{
     border: 3px solid; /*et2*/
     padding: var(--padding_section); /*et3 t1*/
@@ -63,6 +67,7 @@ h2{
 #tabel{
     grid-area: z-tabel;
 }
+
 #calendar{
     grid-area: z-calendar;
 }
@@ -84,7 +89,6 @@ h2{
 #others{
     grid-area: z-others;
 }
-
 
 img{
     width: 100%;
@@ -145,7 +149,7 @@ img{
 table{
     width: 100%;
     table-layout: fixed;
-    border-collapse: collapse;
+    border-collapse: separate;
 }
 
 #t1 th, td {
@@ -177,9 +181,9 @@ table{
     padding-top: 10px;
 }
 
-#t1 tr:hover{
-    
-    transition: all 0.5s linear;
+#t1 tr:hover {
+    box-shadow: inset 0px 0px 10px 1px darkgray;
+    transition: all 0.4s linear;
 }
 
 .table_labels{
