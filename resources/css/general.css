@@ -158,7 +158,14 @@ table{
     --table_border:1px;
     border: var(--table_border) solid black;
     width: 200px;
-    
+}
+
+.table_header{
+    border-bottom: calc(3 * var(--table_border)) solid black ;
+}
+
+.table_footer{
+    border-top: calc(3 * var(--table_border)) solid black ;
 }
 
 #t1 tr:nth-child(even) td {
