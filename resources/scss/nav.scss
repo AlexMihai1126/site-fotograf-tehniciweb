@@ -27,13 +27,14 @@ nav{
     position: sticky; /* ca sa ramana mereu vizibil */
     top: 0;
     margin-left: calc(-1*var(--spatiere_pag));
+    margin-bottom: 20px;
 }
 
 ul.menu{
     display: flex;
     padding: 0;
     margin: 0;
-    justify-content: flex-start; /*center*/
+    justify-content: center;
     flex-wrap: wrap;
 
     li{
@@ -84,7 +85,7 @@ ul.menu{
         opacity: 0;
         transform: scale(0,0);
         transform-origin: center top;
-        transition: all 0.12s linear;
+        transition: all 0.2s linear;
         left: calc(-1 * var(--border_thickness_menu));
         background-color: var(--menu_item_color);
     }
@@ -101,7 +102,21 @@ ul.menu{
 
 .submenu:nth-child(3){
     border-top:none;
-} 
+}
+
+.menu_icon{
+    display: none;
+}
+
+.menu_icon:hover{
+    display: inline;
+    transition: all 0.4s linear;
+}
+
+.mainmenu:hover{
+    box-shadow: inset 0px 0px 10px 1px black;
+    transition: box-shadow 0.6s linear;
+}
 
 #acasa_mediu{
     display: none;

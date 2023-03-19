@@ -23,26 +23,26 @@ ul.menu{
 #ch-menu:checked + ul.menu{
     display: block;
     animation-name: menu_animation;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
     animation-iteration-count: 1;
-    transform-origin: center;
+    transform-origin: top left;
 }
 
 @keyframes menu_animation{
     0%{
         opacity: 0;
-        transform: scale(0.5,0);
+        transform: scale(0,0);
     }
     50%{
-        transform: scale(0.5,1);
+        transform: scale(0.5,0.5);
     }
     100%{
         opacity: 1;
         transform: scale(1,1);
     }
-} /*de schimbat cu cerinta custom */
+}
 
 .mainmenu:nth-child(even){
     border-top:none;
@@ -58,3 +58,7 @@ ul.menu{
 .submenu:nth-child(3){
     border-top:none;
 } 
+
+.menu_icon{
+    display: none;
+}

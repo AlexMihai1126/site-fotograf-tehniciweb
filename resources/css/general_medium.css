@@ -17,3 +17,9 @@ body{
                          "z-userdata z-siteinfo "
                          "z-others z-others";
 }
+
+img{
+    width: 100%;
+    max-width: 400px;
+    min-width: 150px;
+}

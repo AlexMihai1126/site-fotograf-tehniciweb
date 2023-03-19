@@ -92,9 +92,9 @@ h2{
 
 img{
     width: 100%;
-    max-width: 400px;
-    min-width: 125px;
-} /*et3*/
+    max-width: 500px;
+    min-width: 200px;
+}
 
 #link-top{
     --linktop_size:40px;
