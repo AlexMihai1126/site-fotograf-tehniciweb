@@ -38,17 +38,18 @@ body *{
     transition: none;
 } /*inlocuim pt elementele care vrem sa dispara animatiile */
 
-#table_container{
-    overflow-x: auto;
-    min-width: auto;
-} 
-
-#t1{
-    width: auto;
-} /*nefunctional*/
-
 .camera_icon{
     display: none;
     animation: none;
     transition: none;
+}
+
+#tabel_container{
+    min-width: none;
+    max-width: none;
+    overflow-x: scroll;
+}
+
+#t1{
+    width: 600px;
 }

@@ -96,6 +96,7 @@ ul.menu ul {
   display: none;
 }
 
+
 .menu_icon:hover {
   display: inline;
   transition: all 0.4s linear;
@@ -108,6 +109,24 @@ ul.menu ul {
 
 #acasa_mediu {
   display: none;
+}
+
+.submenu{
+  overflow: hidden;
+  position: relative;
+}
+
+.submenu::before{
+  display: inline-block;
+  position: absolute;
+  left: -100px;
+  top: 10px;
+  content: "→";
+  transition: all 0.3s linear;
+}
+
+.submenu:hover::before{
+  left: 5px;
 }
 
 /*# sourceMappingURL=nav_scss.css.map */

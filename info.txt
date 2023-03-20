@@ -1,1 +1,8 @@
-<!--start server: node index.js-->
+<!--start server: node index.js-->\
+
+EJS
+proprietate:valoare
+
+acces: locals.proprietate
+
+VTT in CSS si curs audio si video

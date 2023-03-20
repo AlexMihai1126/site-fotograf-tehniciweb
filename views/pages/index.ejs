@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ro">
     <head>
-        <title>Alex Mihai - Fotograf</title>
+        <title>Alex Mihai | Fotograf</title>
         <meta name="keywords" content=" fotograf, fotografie produs, servicii fotografie, fotograf portret, portrete, fotograf bucuresti, fotograf profesionist, fotograf nunta, fotograf eveniment, fotograf botez, fotograf cununie"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
         <meta name="description" content="Alex Mihai - fotograf eveniment, produs"><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
         <%- include ("../fragments/head.ejs") %> <!-- "-" - ii spune afiseaza output-ul fisierului-->
@@ -38,7 +38,7 @@
                             <p><strong>Atentie! Acesta inca este un site in lucru si veti afla mai multe despre mine in viitor!</strong></p><br>
                             <h3>Link catre Google - TEST</h3>
                             <a href="http://google.com" target="_blank">Google</a>
-                            <a href="./resources/others/download.pdf" download="file.pdf">Descarca un PDF!</a>
+                            <a href="/resources/others/download.pdf" download="file.pdf">Descarca un PDF!</a>
                 </section>
                 </section>
 
@@ -105,6 +105,7 @@
 
                 <section id="siteinfo">
                     <h2>Informatii despre site vor fi disponibile in curand.</h2>
+                    <p>ip: <%- locals.ip %></p>
                 </section>
 
                 <section id="others">
@@ -144,15 +145,13 @@
 
             <figure class="imagine">
                 <picture>
-                    <source media="(max-width:600px)" srcset="./resources/img/20230218_130112413_iOS_small.jpg">
-                    <source media="(max-width:1000px)" srcset="./resources/img/20230218_130112413_iOS_medium.jpg">
-                    <img src="./resources/img/20230218_130112413_iOS.jpg" title="aparatfoto hover">
+                    <source media="(max-width:600px)" srcset=/resources/img/20230218_130112413_iOS_small.jpg">
+                    <source media="(max-width:1000px)" srcset="/resources/img/20230218_130112413_iOS_medium.jpg">
+                    <img src="/resources/img/20230218_130112413_iOS.jpg" title="aparatfoto hover">
                 </picture>
                 <figcaption>Aparat foto</figcaption>
             </figure>
-            <a href="#top" id="link-top" title="Back to top">
-                <div id="sageata">&#129081;</div>
-            </a>
+            <%- include ("../fragments/linktop.ejs") %>
         </main>
         <%- include ("../fragments/footer.ejs") %>
     </body>

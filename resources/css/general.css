@@ -138,12 +138,13 @@ img{
 #tabel_container{
     width: 100%;
     display: block;
-    min-width: 600px;
-    overflow-x: hidden;/*SCROLLBAR LA TABEL NU FUNCTIONEAZA */
+    min-width: auto;
+    overflow-x: auto;
 }
 
 #t1{
     display: block;
+    max-width: auto;
 }
 
 table{
