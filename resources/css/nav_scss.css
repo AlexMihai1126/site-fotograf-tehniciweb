@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #hamburger, #ch-menu {
   display: none;
 }
@@ -96,7 +97,6 @@ ul.menu ul {
   display: none;
 }
 
-
 .menu_icon:hover {
   display: inline;
   transition: all 0.4s linear;
@@ -111,12 +111,12 @@ ul.menu ul {
   display: none;
 }
 
-.submenu{
+.submenu {
   overflow: hidden;
   position: relative;
 }
 
-.submenu::before{
+.submenu::before {
   display: inline-block;
   position: absolute;
   left: -100px;
@@ -125,7 +125,7 @@ ul.menu ul {
   transition: all 0.3s linear;
 }
 
-.submenu:hover::before{
+.submenu:hover::before {
   left: 5px;
 }
 

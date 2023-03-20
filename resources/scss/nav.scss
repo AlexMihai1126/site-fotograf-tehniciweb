@@ -121,3 +121,21 @@ ul.menu{
 #acasa_mediu{
     display: none;
 }
+
+.submenu{
+    overflow: hidden;
+    position: relative;
+}
+  
+.submenu::before{
+    display: inline-block;
+    position: absolute;
+    left: -100px;
+    top: 10px;
+    content: "→";
+    transition: all 0.3s linear;
+  }
+  
+.submenu:hover::before{
+    left: 5px;
+}
