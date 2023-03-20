@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <title>Alex Mihai - Fotograf</title>
+        <meta name="keywords" content=" fotograf, fotografie produs, servicii fotografie, fotograf portret, portrete, fotograf bucuresti, fotograf profesionist, fotograf nunta, fotograf eveniment, fotograf botez, fotograf cununie"><!--cuvintele cheie ale paginii; majoritatea motoarelor de căutare ignoră keywords -->
+        <meta name="description" content="Alex Mihai - fotograf eveniment, produs"><!-- descrierea paginii, adesea apare sub link când sunt afișate rezultatele căutării -->
+        <%- include ("../fragments/head.ejs") %> <!-- "-" - ii spune afiseaza output-ul fisierului-->
+    </head>
+    <body>
+        <%- include ("../fragments/header.ejs") %>
+        <main>
+           <%- include ("../fragments/nav.ejs") %>
+            <div id="grid-pagina">
+                <section id="prezentare">
+                        <h2>Fotograf</h2>
+                        <p>Salut! Eu sunt Alex, student la Facultatea de Matematica si Informatica cu o pasiune pentru fotografie.</p>
+                        <section id="s1">
+                            <h3>Cum am inceput acest hobby</h3>
+                            <p>In <s>2020</s> 2019 mi-am cumparat primul aparat foto</p>
+                        </section>
+                        <section id="s2">
+                            <h3>Ce vreau sa fac mai departe?</h3>
+                            <ol>
+                                <li>
+                                    Sa incep sa fac bani din aceasta pasiune
+                                </li>
+                                <li>
+                                    Sa fotografiez evenimente:
+                                    <ul>
+                                    <li>nunti</li>
+                                    <li>botezuri</li>
+                                    </ul>
+                                    <li>Sa fotografiez masini (pentru pasionati: <i>carspotting</i>)</li>
+                                <li>
+                                    Sa fac fotografie de portret
+                                </li>
+                            </ol>
+                            <p><strong>Atentie! Acesta inca este un site in lucru si veti afla mai multe despre mine in viitor!</strong></p><br>
+                            <h3>Link catre Google - TEST</h3>
+                            <a href="http://google.com" target="_blank">Google</a>
+                            <a href="./resources/others/download.pdf" download="file.pdf">Descarca un PDF!</a>
+                </section>
+                </section>
+
+                <section id="tabel">
+                    <h2>Tabel</h2>
+                    <div id="tabel_container">
+                        <table id="t1">
+                            <caption>Valabil doar la achizitia unui pachet "Portrait session"</caption>
+                            <thead>
+                                <tr>
+                                    <td class="table_labels table_header" colspan="4">Oferte</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="table_labels">Numar de poze</td>
+                                    <td class="table_labels">Pret</td>
+                                    <td class="table_labels">Tip pachet</td>
+                                    <td class="table_labels">Valabilitate</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>100 lei</td>
+                                    <td>Individual</td>
+                                    <td>Toata saptamana</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>150 lei</td>
+                                    <td>Family/couple</td>
+                                    <td>Weekend</td>
+                                </tr>
+                                <tr>
+                                    <td>20</td>
+                                    <td>275 lei</td>
+                                    <td>Group</td>
+                                    <td>In cursul saptamanii</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td class="table_labels table_footer" colspan="4">Oferta valabila pana la 1 iunie 2023</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="calendar">
+                    <h3>Calendarul va fi disponibil curand.</h3>
+                </section>
+
+                <section id="anunturi">
+                    <h3>Anunturile vor fi disponibile curand.</h3>
+                </section>
+
+                <section id="utilizatori">
+                    <h3>Lista utilizatorilor va fi disponibil curand.</h3>
+                </section>
+
+                <section id="userdata">
+                    <h3>Date despre utilizator vor fi disponibile curand.</h3>
+                </section>
+
+                <section id="siteinfo">
+                    <h2>Informatii despre site vor fi disponibile in curand.</h2>
+                </section>
+
+                <section id="others">
+                    <h2>Alte detalii</h2>
+                    <section id="summary">
+                        <h3>Intrebari frecvente</h3>
+                        <details>
+                            <summary>Vin la locatia dvs. pentru a face poze?</summary>
+                            <p>Da, vin cu tot echipamentul necesar la locatia dumneavoastra!</p>
+                        </details>
+                        <details>
+                            <summary>Aveti vreo galerie de imagini disponibila?</summary>
+                            <p>Da, exista o galerie de imagini de la evenimente trecute la care am fotografiat, pe langa cele din portofoliu!</p>
+                        </details>
+                        <details>
+                            <summary>Cum se pot plati serviciile?</summary>
+                            <p>Se poate plati in avans, pentru a va scapa de o grija in ziua evenimentului! Dar, in cazul anularii evenimentului, veti primi inapoi doar 70% din suma achitata. In unele situatii exceptionale se poate accepta plata si in locatie, cash. </p>
+                        </details>
+                        </section>
+                    </section>
+
+            </div>
+            
+            <section id="iframe">
+                <h2>Review aparat foto!</h2>
+                <p>Apasa pe unul din link-uri sa vezi un review al aparatului foto pe care il am.</p>
+                <div id="iframe_btn">
+                    <ul class="ifr_btn">
+                        <li><a href="https://www.youtube.com/embed/yVpLoNYeG0E" target="videoplayer">Review 1</a></li>
+                        <li><a href="https://www.youtube.com/embed/QJsEww2j7Ro" target="videoplayer">Review 2</a></li>
+                    </ul>
+                 </div>
+                <div id="iframe_video">
+                    <iframe class="ifr_video"  name="videoplayer" width="560" height="315" src="https://www.youtube.com/embed/QJsEww2j7Ro" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </section>
+
+            <figure class="imagine">
+                <picture>
+                    <source media="(max-width:600px)" srcset="./resources/img/20230218_130112413_iOS_small.jpg">
+                    <source media="(max-width:1000px)" srcset="./resources/img/20230218_130112413_iOS_medium.jpg">
+                    <img src="./resources/img/20230218_130112413_iOS.jpg" title="aparatfoto hover">
+                </picture>
+                <figcaption>Aparat foto</figcaption>
+            </figure>
+            <a href="#top" id="link-top" title="Back to top">
+                <div id="sageata">&#129081;</div>
+            </a>
+        </main>
+        <%- include ("../fragments/footer.ejs") %>
+    </body>
+</html>
