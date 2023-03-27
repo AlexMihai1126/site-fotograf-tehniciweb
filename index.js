@@ -8,10 +8,16 @@ globalObj={
     imgObj:null
 }
 console.log("Folder proiect", __dirname);
+console.log("Cale fisier", __filename);
+console.log("Current working directory", process.cwd());
 
 app.set("view engine","ejs");
 
 app.use("/resources", express.static(__dirname+"/resources")); //trimite toate fisierele din resurse
+
+app.use(/^\/resources(\/[a-zA-Z0-9]*(?!\.)[a-zA-Z0-9]*)*$/, function(req,res){
+    showErr(res,403);
+});
 
 app.get(["/index","/","/home"], function(req, res){
     res.render("pages/index", {ip: req.ip});
@@ -22,19 +28,28 @@ app.get(["/about"], function(req, res){
 })
 
 app.get("/*",function(req, res){
-    console.log("path:",req.url);
-    res.render("pages"+ req.url, function(err, renderRes){
-        if (err){
-            console.log(err);
-            if(err.message.startsWith("Failed to lookup view "))
-                showErr(res,404);
-            else
-               showErr(res);
+    //console.log("path:",req.url);
+    try{
+        res.render("pages"+ req.url, function(err, renderRes){
+            if (err){
+                console.log(err);
+                if(err.message.startsWith("Failed to lookup view "))
+                    showErr(res,404);
+                else
+                   showErr(res);
+            }
+            else{
+                res.send(renderRes);
+            }
+        });
+    }
+    catch(err){
+        console.log(err);
+        if(err.message.startsWith("Cannot find module")){
+            showErr(res,404);
         }
-        else{
-            res.send(renderRes);
-        }
-    });
+    }
+    
  
 });
 
@@ -47,7 +62,7 @@ function initErr(){
     globalObj.errObj=errObjLocal;
 } //initializeaza eroarea
 initErr();
-//todo - named parameters
+
 function showErr(res, id_p, title_p, text_p, img_p){
     let errorLocal= globalObj.errObj.errInfo.find(function(elemErr){return elemErr.id==id_p}) //cautam in json eroarea
     if(errorLocal){
@@ -60,9 +75,9 @@ function showErr(res, id_p, title_p, text_p, img_p){
         res.render("pages/error",{title:title_1, text: text_1, img: img_1});
     }
     else {
-        res.render("pages/error", {title: globalObj.errObj.defaultErr.title, text: globalObj.errObj.defaultErr.text, img: globalObj.errObj.defaultErr.img});
+        res.render("pages/error", {title: globalObj.errObj.defaultErr.title, text: globalObj.errObj.defaultErr.text, img: globalObj.errObj.base_path+"/"+defaultErr.img});
     }
-}
+} //afiseaza eroarea
 
 app.listen(8080);
 console.log("Serverul a pornit");
