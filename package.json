@@ -2,5 +2,36 @@
   "dependencies": {
     "ejs": "^3.1.9",
     "express": "^4.18.2"
-  }
+  },
+  "name": "site_fotograf",
+  "description": "proiect tehnici web an 2 sem 2 cti",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexMihai1126/site-fotograf-tehniciweb.git"
+  },
+  "keywords": [
+    "fotograf",
+    "servicii",
+    "fotografie",
+    "fotografie",
+    "produs",
+    "fotografie",
+    "eveniment",
+    "fotografie",
+    "nunta",
+    "fotografie",
+    "botez"
+  ],
+  "author": "Alexandru Mihai",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexMihai1126/site-fotograf-tehniciweb/issues"
+  },
+  "homepage": "https://github.com/AlexMihai1126/site-fotograf-tehniciweb#readme"
 }
