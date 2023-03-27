@@ -89,14 +89,22 @@
         display: none;
     }
 
-    #bara_nav *{
-        all: unset !important;
+    ul.menu > li{
+        display: block;
+        border: none;
+        width: auto;
+        height: auto;
+        overflow: visible;
     }
 
-    li{
-        display: flex;
-        list-style-type: circle;
-    } /*inca nu functioneaza corect*/
+    ul.menu{
+        display: block;
+        padding-left: 30px;
+    }
+    .submenu{
+        display: none;
+    }
+
 }
 
 @page {
