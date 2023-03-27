@@ -37,8 +37,8 @@
                             </ol>
                             <p><strong>Atentie! Acesta inca este un site in lucru si veti afla mai multe despre mine in viitor!</strong></p><br>
                             <h3>Link catre Google - TEST</h3>
-                            <a href="http://google.com" target="_blank">Google</a>
-                            <a href="/resources/others/download.pdf" download="file.pdf">Descarca un PDF!</a>
+                            <a class="link" href="http://google.com" target="_blank">Google</a>
+                            <a class="link" href="/resources/others/download.pdf" download="file.pdf">Descarca un PDF!</a>
                 </section>
                 </section>
 
@@ -145,12 +145,20 @@
 
             <figure class="imagine">
                 <picture>
-                    <source media="(max-width:600px)" srcset=/resources/img/20230218_130112413_iOS_small.jpg">
+                    <source media="(max-width:600px)" srcset="/resources/img/20230218_130112413_iOS_small.jpg">
                     <source media="(max-width:1000px)" srcset="/resources/img/20230218_130112413_iOS_medium.jpg">
                     <img src="/resources/img/20230218_130112413_iOS.jpg" title="aparatfoto hover">
                 </picture>
                 <figcaption>Aparat foto</figcaption>
             </figure>
+
+            <video controls preload="auto" poster="/resources/video/poster.jpg">
+                <source src="/resources/video/balea_mp4.mp4" type="video/mp4">
+                <source src="/resources/video/balea_ogv.ogv" type="video/ogv">
+                <track default src="/resources/others/video_ro.vtt" kind="captions" srclang="ro" label="romana"/>
+                <track  src="/resources/others/video_en.vtt" kind="captions" srclang="en" label="engleza"/>
+            </video>
+
             <%- include ("../fragments/linktop.ejs") %>
         </main>
         <%- include ("../fragments/footer.ejs") %>

@@ -207,3 +207,56 @@ table{
     text-align: center;
     color: var(--menu_item_color);
 }
+
+a{
+    color: var(--main_color);
+    background-position: center;
+    background-size: 0%;
+    background-repeat: no-repeat;
+}
+
+a:hover{
+    color: var(--hover_color);
+    transition: color 0.3s linear;
+}
+
+a.link:hover{
+    background-image: radial-gradient(#02979c85 40%,#8fd5cf00 80%, #8fd5cf00 100%);
+    background-size: 100%;
+    transition: background-size 1s linear;
+}
+
+a:visited{
+    color: var(--clicked_link);
+}
+
+a:active{
+    color: var(--accent_color);
+    border: 2px solid black;
+    transition: all 0.5s linear;
+}
+
+a[href^="http"]::before{
+    content: "⮳";
+    font-size: 1.5rem;
+}
+a[href^="http"]:hover::before{
+    color: var(--accent_color);
+    transition: color 0.35s linear;
+}
+
+::cue{
+    background: linear-gradient(var(--clicked_link), var(--hover_color));
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+video{
+    display: block;
+    width: 100%;
+    min-width: 100px;
+    max-width: 300px;
+    min-height: auto;
+    max-height: none;
+}

@@ -53,3 +53,7 @@ ul.ifr_btn li a, ul.ifr_btn li div {
     text-decoration: none;
     font-weight: bold;
 }
+
+ul.ifr_btn a::before{
+    content: none;
+}

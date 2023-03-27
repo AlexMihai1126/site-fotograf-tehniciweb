@@ -1,5 +1,6 @@
 const express = require("express");
 const fs = require("fs");
+const path = require('path');
 
 app= express();
 
@@ -11,6 +12,15 @@ console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
 console.log("Current working directory", process.cwd());
 
+vectorFolders=["temp", "temp1"];
+
+for(let folder_for of vectorFolders){
+    let folderPath = path.join(__dirname,folder_for);
+    if(!fs.existsSync(folderPath)){
+        fs.mkdirSync(folderPath);
+    }
+}
+
 app.set("view engine","ejs");
 
 app.use("/resources", express.static(__dirname+"/resources")); //trimite toate fisierele din resurse
@@ -19,8 +29,17 @@ app.use(/^\/resources(\/[a-zA-Z0-9]*(?!\.)[a-zA-Z0-9]*)*$/, function(req,res){
     showErr(res,403);
 });
 
+app.get("/favicon.ico",function(req,res){
+    res.sendFile(__dirname+"/resources/img/favicon/favicon.ico");
+})
+
 app.get(["/index","/","/home"], function(req, res){
     res.render("pages/index", {ip: req.ip});
+})
+
+//app.get(/\.ejs$/) - cu regexp
+app.get("/*.ejs", function(req,res){
+    showErr(res,400);
 })
 
 app.get(["/about"], function(req, res){
