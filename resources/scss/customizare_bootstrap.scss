@@ -1,0 +1,5 @@
+@use '../../node_modules/bootstrap/scss/bootstrap.scss' with (
+    $primary: rgb(170, 255, 0),
+    $secondary: teal,
+    $font-family-sans-serif: Quicksand
+)
