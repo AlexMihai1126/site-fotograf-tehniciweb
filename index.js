@@ -4,7 +4,6 @@ const path = require('path');
 const sharp = require('sharp');
 const sass = require('sass');
 const {Client} = require('pg');
-const { start } = require("repl");
 
 /* var client= new Client({database:"proiectweb",
         user:"alexm1",
