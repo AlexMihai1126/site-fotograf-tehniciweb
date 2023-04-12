@@ -10,14 +10,24 @@
         <%- include ("../fragments/header.ejs") %>
         <main>
            <%- include ("../fragments/nav.ejs") %>
+           <!-- <button type="button" class="btn btn-primary">Buton test</button> -->
             <div id="grid-pagina">
                 <section id="prezentare">
-                        <h2>Fotograf</h2>
+                        <!-- <h2>Fotograf</h2> -->
+                        <div id="text_reflectat_c">
+                            <div id="text_baza">
+                                Fotograf
+                            </div>
+                            <div id="text_reflectat">
+                                Fotograf
+                            </div>
+                        </div>
                         <p>Salut! Eu sunt Alex, student la Facultatea de Matematica si Informatica cu o pasiune pentru fotografie.</p>
                         <section id="s1">
                             <h3>Cum am inceput acest hobby</h3>
                             <p>In <s>2020</s> 2019 mi-am cumparat primul aparat foto</p>
                         </section>
+                        <hr>
                         <section id="s2">
                             <h3>Ce vreau sa fac mai departe?</h3>
                             <ol>
@@ -125,6 +135,21 @@
                             <p>Se poate plati in avans, pentru a va scapa de o grija in ziua evenimentului! Dar, in cazul anularii evenimentului, veti primi inapoi doar 70% din suma achitata. In unele situatii exceptionale se poate accepta plata si in locatie, cash. </p>
                         </details>
                         </section>
+                        <!-- <div id="grid-galerie"> //DE SCHIMBAT
+                            <% for (let imag of locals.imagini) { %>
+                                //get current date vezi cod laborator
+                                let data=new Date()
+                                var v_luni=["ianuarie", "februarie", "martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]
+                                    <figure>
+                                        <picture>
+                                            <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
+                                            <img src="<%- imag.fisier %>" alt="imagine">
+                                        </picture>
+                                        <figcaption><%- imag.descriere %></figcaption>
+                                    </figure>
+                         
+                            <% }  %>
+                        </div> -->
                     </section>
 
             </div>

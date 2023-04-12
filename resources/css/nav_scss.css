@@ -29,6 +29,7 @@ nav {
   top: 0;
   margin-left: calc(-1 * var(--spatiere_pag));
   margin-bottom: 20px;
+  z-index: 100;
 }
 
 ul.menu {
@@ -128,5 +129,3 @@ ul.menu ul {
 .submenu:hover::before {
   left: 5px;
 }
-
-/*# sourceMappingURL=nav_scss.css.map */
