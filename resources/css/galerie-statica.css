@@ -1,4 +1,5 @@
 #galerie-statica{
+  --padding-intern:10px;
   padding-left:var(--padding-intern);
   padding-right:var(--padding-intern);
 }
