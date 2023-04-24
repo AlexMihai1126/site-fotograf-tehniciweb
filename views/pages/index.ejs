@@ -10,10 +10,8 @@
         <%- include ("../fragments/header.ejs") %>
         <main>
            <%- include ("../fragments/nav.ejs") %>
-           <!-- <button type="button" class="btn btn-primary">Buton test</button> -->
             <div id="grid-pagina">
                 <section id="prezentare">
-                        <!-- <h2>Fotograf</h2> -->
                         <div id="text_reflectat_c">
                             <div id="text_baza">
                                 Fotograf
@@ -45,7 +43,7 @@
                                     Sa fac fotografie de portret
                                 </li>
                             </ol>
-                            <p><strong>Atentie! Acesta inca este un site in lucru si veti afla mai multe despre mine in viitor!</strong></p><br>
+                            <p class="text"><strong>Atentie! Acesta inca este un site in lucru si veti afla mai multe despre mine in viitor!</strong></p><br>
                             <h3>Link catre Google - TEST</h3>
                             <a class="link" href="http://google.com" target="_blank">Google</a>
                             <a class="link" href="/resources/others/download.pdf" download="file.pdf">Descarca un PDF!</a>
@@ -56,7 +54,7 @@
                     <h2>Tabel</h2>
                     <div id="tabel_container">
                         <table id="t1">
-                            <caption>Valabil doar la achizitia unui pachet "Portrait session"</caption>
+                            <caption class="text">Valabil doar la achizitia unui pachet "Portrait session"</caption>
                             <thead>
                                 <tr>
                                     <td class="table_labels table_header" colspan="4">Oferte</td>
@@ -135,21 +133,6 @@
                             <p>Se poate plati in avans, pentru a va scapa de o grija in ziua evenimentului! Dar, in cazul anularii evenimentului, veti primi inapoi doar 70% din suma achitata. In unele situatii exceptionale se poate accepta plata si in locatie, cash. </p>
                         </details>
                         </section>
-                        <!-- <div id="grid-galerie"> //DE SCHIMBAT
-                            <% for (let imag of locals.imagini) { %>
-                                //get current date vezi cod laborator
-                                let data=new Date()
-                                var v_luni=["ianuarie", "februarie", "martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]
-                                    <figure>
-                                        <picture>
-                                            <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
-                                            <img src="<%- imag.fisier %>" alt="imagine">
-                                        </picture>
-                                        <figcaption><%- imag.descriere %></figcaption>
-                                    </figure>
-                         
-                            <% }  %>
-                        </div> -->
                     </section>
 
             </div>
@@ -187,5 +170,6 @@
             <%- include ("../fragments/linktop.ejs") %>
         </main>
         <%- include ("../fragments/footer.ejs") %>
+        <!-- <button type="button" class="btn btn-primary">Inapoi sus</button> -->
     </body>
 </html>

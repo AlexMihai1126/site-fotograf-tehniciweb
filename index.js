@@ -78,6 +78,22 @@ app.get(["/about"], function(req, res){
     res.render("pages/about");
 })
 
+app.get(["/eventsgallery"], function(req, res){
+    res.render("pages/eventsgallery");
+})
+
+app.get(["/portfolio"], function(req, res){
+    res.render("pages/portfolio");
+})
+
+app.get(["/contact"], function(req, res){
+    res.render("pages/contact");
+})
+
+app.get(["/services"], function(req, res){
+    res.render("pages/services");
+})
+
 app.get("/*",function(req, res){
     //console.log("path:",req.url);
     try{
