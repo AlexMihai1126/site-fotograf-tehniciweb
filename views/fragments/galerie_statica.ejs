@@ -1,15 +1,32 @@
-<div id="grid-galerie">
-    <% for (let imag of locals.imagini) { %>
-        //get current date vezi cod laborator
-        let data=new Date()
-        var v_luni=["ianuarie", "februarie", "martie","aprilie","mai","iunie","iulie","august","septembrie","octombrie","noiembrie","decembrie"]
-            <figure>
-                <picture>
-                    <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
-                    <img src="<%- imag.fisier %>" alt="imagine">
-                </picture>
-                <figcaption><%- imag.descriere %></figcaption>
-            </figure>
- 
-    <% }  %>
-</div>
+<section id="galerie-statica">
+    <h2>Galerie</h2>
+    <div id="grid-galerie">
+        <% d=new Date().getHours();
+            let timer=-1;
+            if(d>=5 && d<12){
+                timer=0;
+            }else{
+                if(d>=12 && d<20){
+                timer=1;
+            }else{
+                if(d>=20 && d<5){
+                timer=2;
+                }
+            }
+            }
+            var v_timp=["dimineata", "zi", "seara"];
+            for (let imag of locals.imagini) {
+                if(imag.timp && imag.timp.includes(v_timp[timer]) || imag.timp=="any") {
+                %>
+                <figure class="galerie-imag">
+                    <picture>
+                        <source srcset="<%- imag.fisier_mic %>" media="(max-width:700px)" />
+                        <source srcset="<%- imag.fisier_mediu %>" media="(max-width:1000px)" />
+                        <img src="<%- imag.fisier %>" alt="<%-imag.alt%>" title="<%-imag.alt %>">
+                    </picture>
+                    <figcaption><%- imag.descriere %></figcaption>
+                </figure>
+                <% }  %>
+        <% } %>
+    </div>
+</section>

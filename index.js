@@ -5,19 +5,12 @@ const sharp = require('sharp');
 const sass = require('sass');
 const {Client} = require('pg');
 
-/* var client= new Client({database:"proiectweb",
+var client= new Client({database:"proiectweb",
         user:"alexm1",
         password:"1234",
         host:"localhost",
         port:5432});
 client.connect();
-
-client.query("select * from lab8_10", function(err, rez){
-    console.log("Eroare BD",err);
- 
-    console.log("Rezultat BD",rez);
-}); */ //conexiune la baza de date
-
 
 app= express();
 
@@ -37,8 +30,19 @@ globalObj={
     imgObj:null,
     folderScss: path.join(__dirname, "resources/scss"),
     folderCss: path.join(__dirname,"/resources/css"),
-    folderBkp: path.join(__dirname,"bkp")
+    folderBkp: path.join(__dirname,"bkp"),
+    menuOptions: []
 }
+
+client.query("select * from unnest(enum_range(null::tipuri_produse))", function(err,rezTipuri){
+    if(err){
+        console.log(err);
+    }
+    else{
+        globalObj.menuOptions=rezTipuri.rows;
+    }
+}) //luam tipurile de produse si le bagam in obj global
+
 console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
 console.log("Current working directory", process.cwd());
@@ -56,6 +60,11 @@ app.set("view engine","ejs");
 
 app.use("/resources", express.static(__dirname+"/resources")); //trimite toate fisierele din resurse
 app.use("/node_modules", express.static(__dirname+"/node_modules"));
+
+app.use("/*", function(req, res, next){
+    res.locals.optiuniMeniu=globalObj.optiuniMeniu;
+    next();
+});
 
 app.use(/^\/resources(\/[a-zA-Z0-9]*(?!\.)[a-zA-Z0-9]*)*$/, function(req,res){
     showErr(res,403);
@@ -79,7 +88,7 @@ app.get(["/about"], function(req, res){
 })
 
 app.get(["/eventsgallery"], function(req, res){
-    res.render("pages/eventsgallery");
+    res.render("pages/eventsgallery",{imagini:globalObj.imgObj.imagini});
 })
 
 app.get(["/portfolio"], function(req, res){
@@ -90,9 +99,41 @@ app.get(["/contact"], function(req, res){
     res.render("pages/contact");
 })
 
-app.get(["/services"], function(req, res){
-    res.render("pages/services");
-})
+
+
+app.get(["/services"],function(req, res){
+    //TO DO query pentru a selecta toate produsele
+    //TO DO se adauaga filtrarea dupa tipul produsului
+    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
+    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err,rezCategorie){
+        let conditieWhere="";
+        if(req.query.type){
+            conditieWhere=` where tip_produs ='${req.query.type}'`;
+        }
+        client.query("select * from prajituri"+ conditieWhere , function(err, rez){
+            //console.log(300);
+            if(err){
+                console.log(err);
+                showErr(res, 2);
+            }
+            else
+                res.render("pages/services", {produse:rez.rows, optiuni:rezCategorie.rows});
+        });
+    });
+});
+
+app.get("/product/:id",function(req, res){
+    console.log(req.params);
+   
+    client.query(` select * from prajituri where id = ${req.params.id} `, function (err, rez){
+        if(err){
+            console.log(err);
+            showErr(res, 2);
+        }
+        else
+            res.render("pages/product", {prod:rez.rows[0]});
+    });
+});
 
 app.get("/*",function(req, res){
     //console.log("path:",req.url);
@@ -100,7 +141,7 @@ app.get("/*",function(req, res){
         res.render("pages"+ req.url, function(err, renderRes){
             if (err){
                 console.log(err);
-                if(err.message.startsWith("Failed to lookup view "))
+                if(err.message.startsWith("Failed to lookup view"))
                     showErr(res,404);
                 else
                    showErr(res);
@@ -135,6 +176,9 @@ function compileScss(pathScss, reason, pathCss){
         pathCss=path.join(globalObj.folderCss,pathCss);
     } // la acest punct avem cai absolute in pathScss si pathCss
     let currentFileCss=path.basename(pathCss);
+
+    //let caleResBackup=path.join(globalObj.pathBkp,"resurse/css");
+
     if(fs.existsSync(pathCss)){
         let pathBkp = path.parse(pathCss).name + fileNameTS + "_" + reason + ".css";
         fs.copyFileSync(pathCss, path.join(globalObj.folderBkp,pathBkp));

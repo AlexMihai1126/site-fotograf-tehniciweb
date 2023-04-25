@@ -9,16 +9,33 @@
  grid-template-columns: repeat(3,1fr);
  grid-row-gap:0.5em;
  grid-column-gap:0.5em;
- counter-reset: nrimag 3;  /* nrimag=3 */
+ counter-reset: nrimag 0;
 }
 #grid-galerie img{
   width: 100%;
 }
+#grid-galerie img:hover{
+  width: 100%;
+  scale: 150%;
+  rotate: 360deg;
+  border-radius: 20px;
+  transition: all 0.45s linear;
+  border: 2px solid var(--hover_color);
+  box-shadow:  0px 0px 15px 1px rgb(83, 83, 83);
+}
 #grid-galerie figcaption{
   text-align:center;
-  counter-increment: nrimag 2; /* nrimag+=2 */
+  counter-increment: nrimag 1;
 }
 
 #grid-galerie figcaption::before{
   content: counter(nrimag, upper-alpha) ")";
+}
+
+.galerie-imag{
+  max-width: 320px;
+  min-width: 125px;
+}
+.galerie-imag:hover{
+  z-index: 100;
 }

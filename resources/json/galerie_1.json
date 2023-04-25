@@ -4,32 +4,33 @@
 		{
 			"fisier":"arc_apus2.jpg",
 			"descriere":"Arcul de Triumf la apus",
-			"luni":["martie","aprilie"],
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"Arc de Triumf, apus"
 		},
 		{
 			"fisier":"arc_primavara.jpg",
 			"descriere":"Arcul de Triumf, primavara",
-			"luni":["martie","aprilie","mai"],
-			"timp":"zi"
+			"timp":"zi",
+			"alt":"Arc de Triumf, primavara"
 			
 		},
 		{
 			"fisier":"arc_triumf1.jpg",
 			"descriere":"Arcul de Triumf la apus, Octombrie",
-			"luni":["octombrie"],
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"Arc de Triumf, apus"
 		},
 		{
 			"fisier":"bmw.jpg",
 			"descriere":"BMW M8 Competition",
-			"timp":"zi"
+			"timp":"zi",
+			"alt":"Un BMW M8 Competition Gran Coupe"
 		},
 		{
 			"fisier":"brasov.jpg",
 			"descriere":"O seara in Brasov",
-			"luni":["decembrie","ianuarie"],
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"Centrul Brasovului"
 		},
 		{
 			"fisier":"bucuresti_apus1.jpg",
@@ -39,82 +40,99 @@
 		{
 			"fisier":"bucuresti_night.jpg",
 			"descriere":"Bucuresti noaptea, zona Floreasca",
-			"luni":["ianuarie","februarie"],
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"none"
 		},
 		{
 			"fisier":"catel.jpg",
-			"descriere":"Catelus iesit prin gard, Celula de Arta Bucuresti"
+			"descriere":"Catelus iesit prin gard, Celula de Arta Bucuresti",
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"craciun.jpg",
 			"descriere":"Decoratiuni de Craciun",
-			"luni":["decembrie"]
+			"timp":"seara",
+			"alt":"none"
 		},
 		{
 			"fisier":"dubai.jpg",
 			"descriere":"Dubai, seara, etajul 124",
-			"luni":["aprilie","mai"],
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"none"
 		},
 		{
 			"fisier":"edenland_2021.jpg",
 			"descriere":"Parcul Edenland, Balotesti",
-			"luni":["octombrie"]
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"lalele.jpg",
 			"descriere":"Lalele",
-			"luni":["martie","aprilie"]
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"mare.jpg",
 			"descriere":"Litoralul Romanesc la rasarit",
-			"luni":["iulie","august"],
-			"timp":"dimineata"
+			"timp":"dimineata",
+			"alt":"none"
 		},
 		{
 			"fisier":"munti.jpg",
-			"descriere":"Drum de munte cu ceata"
+			"descriere":"Drum de munte cu ceata",
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"munti_apus.jpg",
-			"descriere":"Muntii Fagaras la apus"
+			"descriere":"Muntii Fagaras la apus",
+			"timp":"seara",
+			"alt":"none"
 		},
 		{
 			"fisier":"padure.jpg",
 			"descriere":"Padure din Sinaia",
-			"luni":["septembrie","octombrie","noiembrie"]
+			"timp":"zi",
+			"alt":"none"
 		},
 		{
 			"fisier":"pleiade.jpg",
 			"descriere":"Pleiadele sau cele 7 surori",
-			"luni":["iunie","iulie","august"],
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"none"
 		},
 		{
 			"fisier":"scari_toamna.jpg",
 			"descriere":"Scarile din parcul Tineretului",
-			"luni":["septembrie","octombrie","noiembrie"]
-		},
-		{
-			"fisier":"craciun.jpg",
-			"descriere":"Decoratiuni de Craciun",
-			"luni":["decembrie"]
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"ski.jpg",
 			"descriere":"Statiunea Sinaia din telecabina",
-			"luni":["ianuarie"]
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"streetphoto.jpg",
-			"descriere":"Fotografie de strada, Bucuresti"
+			"descriere":"Fotografie de strada, Bucuresti",
+			"timp":"any",
+			"alt":"none"
 		},
 		{
 			"fisier":"streetphoto_night.jpg",
 			"descriere":"Asteptand autobuzul",
-			"timp":"seara"
+			"timp":"seara",
+			"alt":"none"
+		},
+		{
+			"fisier":"streetphoto_night.jpg",
+			"descriere":"",
+			"timp":"",
+			"license":"",
+			"alt":""
 		}
 	]
 }

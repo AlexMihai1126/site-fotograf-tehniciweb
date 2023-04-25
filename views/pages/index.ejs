@@ -112,7 +112,7 @@
                 </section>
 
                 <section id="siteinfo">
-                    <h2>Informatii despre site vor fi disponibile in curand.</h2>
+                    <h3>Informatii despre site vor fi disponibile in curand.</h3>
                     <p>ip: <%- locals.ip %></p>
                 </section>
 
@@ -133,8 +133,7 @@
                             <p>Se poate plati in avans, pentru a va scapa de o grija in ziua evenimentului! Dar, in cazul anularii evenimentului, veti primi inapoi doar 70% din suma achitata. In unele situatii exceptionale se poate accepta plata si in locatie, cash. </p>
                         </details>
                         </section>
-                    </section>
-
+                        <%- include ("../fragments/galerie_statica.ejs") %>
             </div>
             
             <section id="iframe">
@@ -170,6 +169,7 @@
             <%- include ("../fragments/linktop.ejs") %>
         </main>
         <%- include ("../fragments/footer.ejs") %>
-        <!-- <button type="button" class="btn btn-primary">Inapoi sus</button> -->
+        <hr>
+        <button type="button" class="btn btn-primary">Un buton</button>
     </body>
 </html>

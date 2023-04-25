@@ -1,5 +1,4 @@
 html{
-    font-size: 15px;
     font-family: Quicksand;
     transition: font-size 0.15s linear;
 } /* marime font baza pagina */
@@ -19,6 +18,7 @@ body{
     padding-left: var(--spatiere_pag);
     padding-right: var(--spatiere_pag);
     min-width: 450px;
+    margin: 10px;
 } /* setari body plus definirea culorilor */
 
 body.dark{
@@ -28,12 +28,15 @@ body.dark{
     color: var(--text_color_dark);
 }
 
-h1{
-    font-size: 2rem;
+h1.main_heading {
+    font-weight: bold;
+    padding: var(--padding_section);
+    text-align: center;
+    color: var(--menu_item_color);
 }
 
 h2{
-    font-size: 1.75rem;
+    font-weight: bold;
 } /*dimensiune font derivata din dimensiunea de baza*/
 
 body *::selection{
@@ -208,10 +211,6 @@ table{
     display: flex;
 }
 
-.main_heading{
-    text-align: center;
-    color: var(--menu_item_color);
-}
 
 a{
     color: var(--main_color);
@@ -313,5 +312,5 @@ hr::before{
     display: block;
     width: 100%;
     height: 20px;
-    bottom: 50%;
+    bottom: 60%;
 }/* etapa5 stilizare css */
