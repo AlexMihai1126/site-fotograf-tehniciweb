@@ -4,6 +4,7 @@ html{
 } /* marime font baza pagina */
 
 body{
+    --link_hover_gr:#02979c85;
     --body_color:white;
     --text_color:black;
     --spatiere_pag: 50px; /*et3 t1*/
@@ -22,10 +23,29 @@ body{
 } /* setari body plus definirea culorilor */
 
 body.dark{
-    --body_color_dark:white;
-    --text_color_dark:black;
-    background-color: var(--body_color_dark);
-    color: var(--text_color_dark);
+    --body_color:#263238;
+    --text_color:#FFFFFF;
+    --main_color: #4DB6AC;
+    --hover_color:#00695C;
+    --clicked_link: #1DE9B6;
+    --accent_color:#004D40;
+    --menu_item_color:#4DB6AC;
+    --link_hover_gr:#00695C70;
+    background-color: var(--body_color);
+    color: var(--text_color);
+}
+
+body.colorful{
+    --body_color:#FFF3E0;
+    --text_color:#000000;
+    --main_color: #D32F2F;
+    --hover_color:#EF6C00;
+    --clicked_link: #FF3D00;
+    --accent_color:#EF5350;
+    --menu_item_color:#D32F2F;
+    --link_hover_gr:#EF6C0040;
+    background-color: var(--body_color);
+    color: var(--text_color);
 }
 
 h1.main_heading {
@@ -40,8 +60,10 @@ h2{
 } /*dimensiune font derivata din dimensiunea de baza*/
 
 body *::selection{
-    background-color: #03d4db4d;
-    color: #01595C;
+    --selection_text_col:#01595C;
+    --selection_text_bg:#03d4db4d;
+    background-color: var(--selection_text_bg);
+    color: var(--selection_text_col);
 }/* etapa5 stilizare css */
 
 #watermark{
@@ -225,7 +247,8 @@ a:hover{
 }
 
 a.link:hover{
-    background-image: radial-gradient(#02979c85 40%,#8fd5cf00 80%, #8fd5cf00 100%);
+    
+    background-image: radial-gradient(var(--link_hover_gr) 40%,#8fd5cf00 80%, #8fd5cf00 100%);
     background-size: 100%;
     transition: background-size 1s linear;
 }
@@ -314,3 +337,9 @@ hr::before{
     height: 20px;
     bottom: 60%;
 }/* etapa5 stilizare css */
+
+kbd{
+    background-color: var(--main_color);
+    color: var(--text_color);
+    font-family: Quicksand;
+}
