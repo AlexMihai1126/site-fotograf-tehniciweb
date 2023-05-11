@@ -15,16 +15,23 @@
         <li class="mainmenu"><a href="/portfolio">Portofoliu</a>
             <ul>
                 <li class="submenu"><a href="/portfolio">Portofoliu personal</a></li>
-                <li class="submenu"><a href="/eventsgallery">Galerie foto evenimente</a></li>
+                <li class="submenu" style="border-bottom: 2px solid black;"><a href="/eventsgallery">Galerie foto</a></li>
             </ul>
         </li>
         <li class="mainmenu"><a href="/services">Servicii</a>
             <ul>
-                <li class="submenu"><a href="/services?type=gelaterie">Gelaterie</a></li> <!--de schimbat-->
-                <li class="submenu"><a href="/services?type=gelaterie">Gelaterie</a></li> <!--de schimbat-->
+                <% for (let opt of locals.optiuniMeniu) { %>
+                    <li class="submenu"><a href="/services?type=<%- opt.unnest %>"><%- opt.unnest %></a></li>
+                <% } %>
             </ul>
         </li>
         <li class="mainmenu"><a href="/contact">Contact</a></li>
         <li class="mainmenu"><a href="/about">Despre mine</a></li>
+        <li class="theme-switch-nav">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="th-switch">
+                <label class="form-check-label" for="th-switch" id="th-sw-label"><i class="bi bi-sun"></i></label>
+            </div>
+        </li>
     </ul>
 </nav>

@@ -31,17 +31,48 @@ globalObj={
     folderScss: path.join(__dirname, "resources/scss"),
     folderCss: path.join(__dirname,"/resources/css"),
     folderBkp: path.join(__dirname,"bkp"),
-    menuOptions: []
+    menuOptions: [],
+    menuOptions2: [],
+    pretMinMax:[],
+    accesoriiPhotoShoot:[]
 }
 
-client.query("select * from unnest(enum_range(null::tipuri_produse))", function(err,rezTipuri){
+client.query("select * from unnest(enum_range(null::tip_photoshoot))", function(err,rezTipuri){
     if(err){
         console.log(err);
     }
     else{
         globalObj.menuOptions=rezTipuri.rows;
     }
-}) //luam tipurile de produse si le bagam in obj global
+}) //luam tipurile de photoshoot si le bagam in obj global
+
+client.query("select * from unnest(enum_range(null::categ_photoshoot))", function(err,rezTipuri2){
+    if(err){
+        console.log(err);
+    }
+    else{
+        globalObj.menuOptions2=rezTipuri2.rows;
+    }
+});
+
+client.query("select min(pret), max(pret) from servicii", function(err,rezPret){
+    if(err){
+        console.log(err);
+    }
+    else{
+        globalObj.pretMinMax=rezPret.rows;
+    }
+});
+
+client.query("select accesorii from servicii", function(err,rezAcc){
+    if(err){
+        console.log(err);
+    }
+    else{
+        globalObj.accesoriiPhotoShoot=rezAcc.rows;
+        //console.log(globalObj.accesoriiPhotoShoot);
+    }
+});
 
 console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
@@ -62,7 +93,14 @@ app.use("/resources", express.static(__dirname+"/resources")); //trimite toate f
 app.use("/node_modules", express.static(__dirname+"/node_modules"));
 
 app.use("/*", function(req, res, next){
-    res.locals.optiuniMeniu=globalObj.optiuniMeniu;
+    res.locals.optiuniMeniu=globalObj.menuOptions;
+    next();
+});
+
+app.use("/services", function(req, res, next){
+    res.locals.optiuniMeniu2=globalObj.menuOptions2;
+    res.locals.acc=globalObj.accesoriiPhotoShoot;
+    res.locals.preturi_range=globalObj.pretMinMax;
     next();
 });
 
@@ -102,15 +140,13 @@ app.get(["/contact"], function(req, res){
 
 
 app.get(["/services"],function(req, res){
-    //TO DO query pentru a selecta toate produsele
-    //TO DO se adauaga filtrarea dupa tipul produsului
-    //TO DO se selecteaza si toate valorile din enum-ul categ_prajitura
-    client.query("select * from unnest(enum_range(null::categ_prajitura))", function(err,rezCategorie){
+    client.query("select * from unnest(enum_range(null::tip_photoshoot))", function(err,rezCategorie){
         let conditieWhere="";
         if(req.query.type){
-            conditieWhere=` where tip_produs ='${req.query.type}'`;
-        }
-        client.query("select * from prajituri"+ conditieWhere , function(err, rez){
+            conditieWhere=` where tip_p ='${req.query.type}'`;
+            //console.log(req.query.type);
+        }//pentru a vedea doar serviciile de un anumit tip (cand alegem din meniu) - individual/grup/cuplu
+        client.query("select * from servicii"+ conditieWhere , function(err, rez){
             //console.log(300);
             if(err){
                 console.log(err);
@@ -120,12 +156,11 @@ app.get(["/services"],function(req, res){
                 res.render("pages/services", {produse:rez.rows, optiuni:rezCategorie.rows});
         });
     });
-});
+}); 
 
 app.get("/product/:id",function(req, res){
-    console.log(req.params);
-   
-    client.query(` select * from prajituri where id = ${req.params.id} `, function (err, rez){
+    //console.log(req.params);
+    client.query(` select * from servicii where id = ${req.params.id} `, function (err, rez){
         if(err){
             console.log(err);
             showErr(res, 2);
@@ -133,7 +168,7 @@ app.get("/product/:id",function(req, res){
         else
             res.render("pages/product", {prod:rez.rows[0]});
     });
-});
+}); //pagina dedicata produsului
 
 app.get("/*",function(req, res){
     //console.log("path:",req.url);
