@@ -87,11 +87,12 @@ ul.menu ul {
   border-left: none;
   border-right: none;
 } /* pt cele pare scoate border la stanga si dreapta*/
-.submenu:nth-child(odd) {
-  border-bottom: none;
-} /* pt cele impare scoate border sus si jos*/
-.submenu:nth-child(3) {
+.submenu:nth-child(even) {
   border-top: none;
+}
+
+.submenu:nth-child(2) {
+  border-bottom: none;
 }
 
 .menu_icon {
@@ -128,4 +129,12 @@ ul.menu ul {
 
 .submenu:hover::before {
   left: 5px;
+}
+
+nav li.theme-switch-nav {
+  text-align: justify;
+  border-left: none;
+}
+nav li.theme-switch-nav:hover {
+  background-color: transparent;
 }
