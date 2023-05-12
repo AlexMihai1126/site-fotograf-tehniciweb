@@ -153,7 +153,11 @@ app.get(["/services"],function(req, res){
                 showErr(res, 2);
             }
             else
+            if(rez.rowCount==0){
+                res.render("pages/services", {produse:rez.rows, optiuni:rezCategorie.rows, err:"Nu exista produse"});
+            }else{
                 res.render("pages/services", {produse:rez.rows, optiuni:rezCategorie.rows});
+            }
         });
     });
 }); 
