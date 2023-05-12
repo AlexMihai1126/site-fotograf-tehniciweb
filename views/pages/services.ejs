@@ -5,110 +5,137 @@
         <title>Servicii | Alex Mihai - Fotograf</title>
         <%- include("../fragments/head") %>     
         <script type="text/javascript" src=/resources/js/services.js></script>
-
     </head>
     <body>
     <%- include("../fragments/header") %>
     <%- include("../fragments/nav") %>
     <div id="eroarePlaceholder"></div>
+    <% if(locals.err){ %>
+        <div class="alert alert-danger" role="alert">Nu exista rezultate!</div>
+    <%}%> <!--genereaza o eroare daca nu sunt disponibile produse de afisat pentru tipul ales cu ?type=<tip>-->
     <main>
-        <div id="optArea">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="inp-nume">
-                <label for="inp-nume">Nume produs</label>
-            </div>
-            <label for="inp-pret" class="form-label">Pret maxim</label> <span id="infoRange"> (0)</span>
-            <input type="range" class="form-range" id="inp-pret" value="<%- locals.preturi_range[0].min %>" min= "<%- locals.preturi_range[0].min %>"  max="<%- locals.preturi_range[0].max %>">
-            
-            <div> Durata photoshoot-ului:
-            </div>
+        <div id="filtrari">
+            <div id="optArea">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="inp-nume">
+                    <label for="inp-nume">Nume produs</label>
+                </div>
+                <label for="inp-pret" class="form-label">Pret maxim (lei): </label> <span id="infoRange">(0)</span>
+                <input type="range" class="form-range" id="inp-pret" value="<%- locals.preturi_range[0].min %>" min= "<%- locals.preturi_range[0].min %>"  max="<%- locals.preturi_range[0].max %>">
+                
+                <div> Durata photoshoot-ului: </div>
+                <div class="btn-group" role="group">
+                    <input class="btn-check" type="radio" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
+                    <label class="btn btn-outline-primary" for="i_rad4">Toate</label>
+                    <input class="btn-check" type="radio" name="gr_rad" id="i_rad1" value="0:2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="i_rad1">Scurt (durata &lt; 2h)</label>
+                    <input class="btn-check" type="radio" name="gr_rad" id="i_rad2" value="2:4" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="i_rad2">Mediu (2h &le; durata &lt; 4h)</label>
+                    <input class="btn-check" type="radio" name="gr_rad" id="i_rad3" value="4:1000000000" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="i_rad3">Lung (durata &ge; 4h )</label>
+                </div>
+                
+                <div class="btn-group" role="group">
+                    <input id="i_check1" name="gr_chck" checked value="false" type="checkbox" class="btn-check" autocomplete="off"> 
+                    <label class="btn btn-outline-primary" for="i_check1">Photoshoot o zi</label>
+                    <input id="i_check2" name="gr_chck" value="true" type="checkbox" class="btn-check" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="i_check2">Photoshoot mai multe zile</label>
+                </div>
+                <br>
+                <label class="form-label" for="inp-categorie">Categorie photoshoot (select simplu):</label>:
+                <select class="form-select" id="inp-categorie">
+                    <option id="sel-toate" selected value="toate">toate</option>
+                    <% for (let opt of locals.optiuniMeniu2) { %>
+                        <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                    <% } %>
+                </select>
+                <label class="form-label" for="i_sel_multiplu">Accesorii pe care nu le doriti (select multiplu):</label>
+                <select class="form-select" id="i_sel_multiplu" multiple size="4">
+                    <option value="zahar">zahar</option>
+                    <option value="2" selected>opt2</option>
+                    <option value="3">opt3</option>
+                    <option value="4" selected>opt4</option>
+                    <option value="5">opt5</option>
+                </select>
 
-            <div class="btn-group" role="group">
-                <input class="btn-check" type="radio" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
-                <label class="btn btn-outline-primary" for="i_rad4">Toate</label>
-                <input class="btn-check" type="radio" name="gr_rad" id="i_rad1" value="0:2" autocomplete="off">
-                <label class="btn btn-outline-primary" for="i_rad1">Scurt (durata &lt; 2h)</label>
-                <input class="btn-check" type="radio" name="gr_rad" id="i_rad2" value="2:4" autocomplete="off">
-                <label class="btn btn-outline-primary" for="i_rad2">Mediu (2h &le; durata &lt; 4h)</label>
-                <input class="btn-check" type="radio" name="gr_rad" id="i_rad3" value="4:1000000000" autocomplete="off">
-                <label class="btn btn-outline-primary" for="i_rad3">Lung (durata &ge; 4h )</label>
+                <label class="form-label" for="i_datalist">Tip photoshoot (datalist):</label>
+                <input class="form-control" list="id_lista" id="i_datalist" placeholder="Cauta tipuri de photoshoot">
+                <datalist id="id_lista">
+                    <% for (let opt of locals.optiuniMeniu) { %>
+                        <option value="<%- opt.unnest %>"><%- opt.unnest %></option>
+                    <% } %>
+                </datalist>
+
+                <div class="form-floating">
+                <textarea class="form-control" id="i_textarea"></textarea>
+                <label for="i_textarea">Descriere produs</label>
+                </div>
+                </div>
+                <p>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-primary" id="filtrare">Filtreaza</button>
+                        <button type="button" class="btn btn-outline-primary" id="resetare">Reseteaza</button>
+                        <button type="button" class="btn btn-outline-secondary" id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
+                        <button type="button" class="btn btn-outline-secondary" id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
+                    </div>
+                </p>
+                    <p id="p-suma">Apăsați <kbd>Alt+C</kbd> pentru suma preturilor produselor afișate.</p>
+                </div>
             </div>
-
-            <div class="btn-group" role="group">
-                <input id="i_check1" name="gr_chck" checked value="false" type="checkbox" class="btn-check" autocomplete="off"> 
-                <label class="btn btn-outline-primary" for="i_check1">Photoshoot o zi</label>
-                <input id="i_check2" name="gr_chck" value="true" type="checkbox" class="btn-check" autocomplete="off">
-                <label class="btn btn-outline-primary" for="i_check2">Photoshoot mai multe zile</label>
-            </div>
-            <br>
-            
-            <label class="form-label" for="inp-categorie">Categorie photoshoot (select simplu):</label>:
-            <select class="form-select" id="inp-categorie">
-                <option id="sel-toate" selected value="toate">toate</option>
-                <% for (let opt of locals.optiuniMeniu2) { %>
-                    <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
-                <% } %>
-            </select>
-            <p><% locals.preturi_range %></p>
-
-            <label class="form-label" for="i_sel_multiplu">Accesorii pe care nu le doriti (select multiplu):</label>
-            <select class="form-select" id="i_sel_multiplu" multiple size="4">
-                <option value="zahar">zahar</option>
-                <option value="2" selected>opt2</option>
-                <option value="3">opt3</option>
-                <option value="4" selected>opt4</option>
-                <option value="5">opt5</option>
-            </select>
-
-            <label class="form-label" for="i_datalist">Tip photoshoot (datalist):</label>
-            <input class="form-control" list="id_lista" id="i_datalist" placeholder="Cauta tipuri de photoshoot">
-            <datalist id="id_lista">
-                <% for (let opt of locals.optiuniMeniu) { %>
-                    <option value="<%- opt.unnest %>"><%- opt.unnest %></option>
-                <% } %>
-            </datalist>
-
-            <div class="form-floating">
-            <textarea class="form-control" id="i_textarea"></textarea>
-            <label for="i_textarea">Descriere produs</label>
-            </div>
-    </div>
-        <p>
-        <div class="btn-group" role="group">
-            <button type="button" class="btn btn-outline-primary" id="filtrare">Filtreaza</button>
-            <button type="button" class="btn btn-outline-primary" id="resetare">Reseteaza</button>
-            <button type="button" class="btn btn-outline-secondary" id="sortCrescNume">Sorteaza crescator dupa pret si nume</button>
-            <button type="button" class="btn btn-outline-secondary" id="sortDescrescNume">Sorteaza descrescator dupa pret si nume</button>
-        </div>
-        
-        </p>
-        
-        <p id="p-suma">Apăsați <kbd>Alt+C</kbd> pentru suma preturilor produselor afișate.</p>
         <section id="produse">
-            <h2>Produse</h2>
+            <h2>Servicii oferite</h2>
             <div class="grid-produse">
                 <% for( let prod of locals.produse) { %>
-                    <article class="produs" >
+                    <article class="produs" id="ar_ent_<%-prod.id %>" name="<%-prod.nume%>">
                         <h3 class="nume">Nume: <a href="/product/<%-prod.id %>" ><span class="val-nume"><%- prod.nume%></span></a></h3>
-                        <div class="info-prod">
-                            <p class="pret">Pret: <span class="val-pret"><%- prod.pret%></span></p>
-                            <p class="calorii">Calorii: <span class="val-calorii"><%- prod.calorii%></span></p>
-                            <p class="gramaj">Gramaj: <span class="val-gramaj"><%- prod.gramaj%></span></p>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="categorie">Categorie photoshoot:<span class="val-categorie"><%- prod.categ%></span></p>
+                                    <figure>
+                                        <a href="/product/<%-prod.id %>" ><img src="/resources/img/servicii/<%- prod.imag %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                                    </figure>
+                                </div>
+                                <div class="col-6">
+                                    <% let d=new Date(prod.data_ad).getTime();
+                                        var date = new Date(d);
+                                        var timeStampVector= date.toString().split(" ");
+                                        var zi_s=["Luni","Marti","Miercuri","Joi","Vineri","Sambata","Duminica"];
+                                        var data_adaugare=timeStampVector[2] + "-" + timeStampVector[1]+ "-" + timeStampVector[3] + "[" + zi_s[date.getDay()] +"]" %>
+                                    <div class="container info_produs">
+                                        <div class="row durata"><div class="col-3"><p class="nume_pr">Durata:</p></div><div class="col-9"><span class="val-durata"><%- prod.durata%></span> ore</div></div>
+                                        <div class="row acc"><div class="col-3"><p class="nume_pr">Accesorii: </p></div><div class="col-9"><span class="val-acc"><%- prod.accesorii%></span></div></div>
+                                        <div class="row locatie"><div class="col-3"><p class="nume_pr">Locatie: </p></div><div class="col-9"><span class="val-locatie"><%- prod.locatie%></span></div></div>
+                                        <div class="row data"><div class="col-3"><p class="nume_pr data">Data adaugarii: </p></div><div class="col-9"><time id="val-data" datetime="<%- d %>"><%- data_adaugare %></time></div></div>
+                                        <div class="row extins"><div class="col-3"><p class="nume_pr extins">Este pe mai multe zile?: </p></div><div class="col-9"><span class="val-ext"><%- prod.extins%></span></div></div>
+
+                                    </div>
+                                </div>
+                                <div class="container text-center">
+                                    <div class="row">
+                                        <div class="col-6"><p class="tip">Tip photoshoot: <span class="val-tip"><%- prod.tip_p%></span></p></div>
+                                        <div class="col-6"> <p class="pret">Pret: <span class="val-pret"><%- prod.pret%> lei</span></p></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="categorie">Categorie:<span class="val-categorie"><%- prod.categorie%></span></p>
-                        <figure>
-                            <a href="/product/<%-prod.id %>" ><img src="/resources/img/servicii/<%- prod.imagine %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
-                        </figure>
-                        <label class="selecteaza-cos">
-                            Alege:<br>
-                            <input type="checkbox" class="select-cos" value="<%-prod.id %>" autocomplete="off">
-                        </label>
+
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary" id="deschideModal<%prod.id%>">Vezi detalii</button>
+                            <input type="checkbox" class="btn-check" id="adauga_cos<%-prod.id %>" value="<%-prod.id %>" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="adauga_cos<%-prod.id %>">Adauga in cos</label>
+                        </div>
+
+                        <!--<div class="d-grid col-8 mx-auto">
+                            <input type="checkbox" class="btn-check" id="adauga_cos<%-prod.id %>" value="<%-prod.id %>" autocomplete="off">
+                            <label class="btn btn-outline-primary" for="adauga_cos<%-prod.id %>">Adauga in cos</label>
+                        </div> -->
+                       
                     </article>
                 <% }%>
             </div>
         </section>
     </main>
-
-    <%- include("../fragments/footer") %>
     </body>
+    <%- include("../fragments/footer") %>
 </html>
