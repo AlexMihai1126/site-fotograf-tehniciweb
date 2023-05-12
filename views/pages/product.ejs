@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html  lang="ro">
+<html lang="ro">
     <head>
-        <meta name="description" content="Cofetaria Dulcelind ofera prajituri, torturi, produse de patiserie cu optiunea de achizitie online si livrare prin curier.">
-        <meta name="keywords" content="cofetarie, Dulcelind, prajituri, torturi, dulce, pateuri, produse">
-        
-        <title>Cofetăria Dulcelind - home</title>
-        <%- include("../fragments/head") %>     
+        <title> <%- locals.prod.nume %> | Alex Mihai - fotograf</title>
+        <%- include("../fragments/head") %> 
         <link href="/resources/css/produs.css" type="text/css" rel="stylesheet" />
     </head>
     <body>
     <%- include("../fragments/header") %>
-
+    <%- include("../fragments/nav") %>
     <main>
         <section>
-            <h2>Pagină produs</h2>
+            <h2>Pagină seriviciu <%- locals.prod.nume %></h2>
+            <a class="btn btn-outline-secondary" role="button" href="/services">Inapoi la servicii</a>
                 <article id="art-produs">
-                    <h3><span class="nume"><%- locals.prod.nume %></span></h3>
+                    <!-- <h3><span class="nume"><%- locals.prod.nume %></span></h3> -->
                     <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
-                    <p>Descriere: <span class="descriere"><%- locals.prod.descriere %> </span></p>
-                    <p>Ingrediente: <span class="ingrediente"><%- locals.prod.ingrediente %> </span></p>
-                    <p>Calorii: <span class="calorii"><%- locals.prod.calorii %> </span></p>
-                    <p>Gramaj: <span class="gramaj"><%- locals.prod.gramaj %> </span></p>
-                    <p>Categorie: <span class="categorie"><%- locals.prod.categorie %> </span></p>
-                    <p>Pentru diabetici: <span class="pt_diabetici"><%- locals.prod.pt_diabetici %> </span></p>
-                    <p>Data adăugare: <span class="categorie"><%- locals.prod.data_adaugare %> </span></p>
+                    <p>Descriere: <span class="descriere"><%- locals.prod.descr %> </span></p>
+                    <p>Accesorii: <span class="accesorii"><%- locals.prod.accesorii %> </span></p>
+                    <p>Tip: <span class="tip_p"><%- locals.prod.tip_p %> </span></p>
+                    <p>Categorie: <span class="categorie"><%- locals.prod.categ %> </span></p>
+                    <p>Durata: <span class="durata"><%- locals.prod.durata %> </span></p>
+                    <p>Este pe mai multe zile?: <span class="extins"><%- locals.prod.extins %> </span></p>
+                    <p>Data adăugare: <span class="data_ad"><%- locals.prod.data_ad %> </span></p>
                     <figure class="imag-produs">
-                        <img src="/resources/imagini/produse/<%- locals.prod.imagine %>" alt="[imagine <%- locals.prod.nume %>]" />
-                    </figure>
+                        <img src="/resources/img/servicii/<%-locals.prod.imag %>" alt="[imagine <%- locals.prod.nume %>]" />
+                    </figure> <!-- posibil galerie bootstrap -->
                 </article>
         </section>
     </main>
