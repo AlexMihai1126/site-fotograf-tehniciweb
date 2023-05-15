@@ -49,7 +49,7 @@ ul.ifr_btn li a, ul.ifr_btn li div {
     line-height: calc(var(--btn_height_ifr) - 2* var(--border_thickness_menu_ifr)); /*pt a avea border mai mare, scadem de 2 ori borderul adica de sus si jos - aliniere corecta text */
     width: 100%;
     height: 100%;
-    color: black;
+    color: var(--text_color);
     text-decoration: none;
     font-weight: bold;
 }

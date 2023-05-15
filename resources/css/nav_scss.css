@@ -130,11 +130,3 @@ ul.menu ul {
 .submenu:hover::before {
   left: 5px;
 }
-
-nav li.theme-switch-nav {
-  text-align: justify;
-  border-left: none;
-}
-nav li.theme-switch-nav:hover {
-  background-color: transparent;
-}

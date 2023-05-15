@@ -141,15 +141,3 @@ ul.menu{
 .submenu:hover::before{
     left: 5px;
 }
-
-nav li.theme-switch-nav{
-    text-align: justify;
-    border-left: none;
-    &:hover{
-        background-color:transparent;
-    }
-    div{
-        
-    }
-
-}
