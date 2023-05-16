@@ -1,23 +1,31 @@
 <section id="galerie-statica">
     <h2>Galerie</h2>
     <div id="grid-galerie">
-        <% d=new Date().getHours();
-            let timer=-1;
+        <% var d = new Date().getHours();
+            var timer=-1;
             if(d>=5 && d<12){
                 timer=0;
-            }else{
-                if(d>=12 && d<20){
-                timer=1;
-            }else{
-                if(d>=20 && d<5){
-                timer=2;
-                }
             }
+            if(d>=12 && d<20){
+                timer=1;
+            }
+            if(d>=20 || d<5){
+                timer=2;
             }
             var v_timp=["dimineata", "zi", "seara"];
-            for (let imag of locals.imagini) {
-                if(imag.timp && imag.timp.includes(v_timp[timer]) || imag.timp=="any") {
-                %>
+            var i=0;
+            let imag_filtrate=locals.imagini.filter(function (imag) {
+                if(imag.timp && imag.timp.includes(v_timp[timer]) || imag.timp=="any"){
+                    return 1;
+                }else{
+                    return 0;
+                }
+            });
+
+            let l_vector = imag_filtrate.length;
+            let l_div = l_vector - l_vector%3;
+            for (let i=0;i<l_div;i++) {
+                imag=imag_filtrate[i]; %>
                 <figure class="galerie-imag">
                     <picture>
                         <source srcset="<%- imag.fisier_mic %>" media="(max-width:700px)" />
@@ -26,7 +34,7 @@
                     </picture>
                     <figcaption><%- imag.descriere %></figcaption>
                 </figure>
-                <% }  %>
-        <% } %>
+            <% }  %>
+            
     </div>
 </section>
