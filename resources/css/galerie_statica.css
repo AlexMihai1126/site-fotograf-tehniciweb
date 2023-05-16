@@ -10,6 +10,7 @@
  grid-row-gap:0.5em;
  grid-column-gap:0.5em;
  counter-reset: nrimag 0;
+ justify-items: center;
 }
 #grid-galerie img{
   width: 100%;
@@ -33,8 +34,12 @@
 }
 
 .galerie-imag{
-  max-width: 320px;
+  max-width: 350px;
   min-width: 125px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 0;
+  margin-right: 0;
 }
 .galerie-imag:hover{
   z-index: 100;
