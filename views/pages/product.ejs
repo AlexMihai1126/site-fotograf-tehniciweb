@@ -10,18 +10,40 @@
     <%- include("../fragments/nav") %>
     <main>
         <section>
-            <h2>Pagină seriviciu <%- locals.prod.nume %></h2>
+            <% let d=new Date(locals.prod.data_ad).getTime();
+                var date = new Date(d);
+                var timeStampVector= date.toString().split(" ");
+                var zi_s=["Luni","Marti","Miercuri","Joi","Vineri","Sambata","Duminica"];
+                var data_adaugare=timeStampVector[2] + "-" + timeStampVector[1]+ "-" + timeStampVector[3] + "[" + zi_s[date.getDay()] +"]"
+                let extins="";
+                let acc_disp=[];
+                let ore="ora";
+                if(locals.prod.extins){
+                    extins="da";
+                }else{
+                    extins="nu";
+                }
+                if(locals.prod.accesorii==""){
+                    acc_disp="nu sunt necesare";
+                }else{
+                    acc_disp=locals.prod.accesorii;
+                } 
+                if(locals.prod.durata!=1){
+                    ore="ore";
+                }
+                %>
+            <h1><small class="text-body-secondary">Pagină seriviciu: </small> <strong><%- locals.prod.nume %></strong></h1>
             <a class="btn btn-outline-secondary" role="button" href="/services">Inapoi la servicii</a>
                 <article id="art-produs">
                     <!-- <h3><span class="nume"><%- locals.prod.nume %></span></h3> -->
                     <p>Pret: <span class="pret"><%- locals.prod.pret %> </span></p>
                     <p>Descriere: <span class="descriere"><%- locals.prod.descr %> </span></p>
-                    <p>Accesorii: <span class="accesorii"><%- locals.prod.accesorii %> </span></p>
+                    <p>Accesorii: <span class="accesorii"><%- acc_disp %> </span></p>
                     <p>Tip: <span class="tip_p"><%- locals.prod.tip_p %> </span></p>
                     <p>Categorie: <span class="categorie"><%- locals.prod.categ %> </span></p>
-                    <p>Durata: <span class="durata"><%- locals.prod.durata %> </span></p>
-                    <p>Este pe mai multe zile?: <span class="extins"><%- locals.prod.extins %> </span></p>
-                    <p>Data adăugare: <span class="data_ad"><%- locals.prod.data_ad %> </span></p>
+                    <p>Durata maxima: <span class="durata"><%- locals.prod.durata %> </span> <%-ore%></p>
+                    <p>Este pe mai multe zile?: <span class="extins"><%- extins %> </span></p>
+                    <p>Data adăugare: <span class="data_ad"><%- data_adaugare %> </span></p>
                     <figure class="imag-produs">
                         <img src="/resources/img/servicii/<%-locals.prod.imag %>" alt="[imagine <%- locals.prod.nume %>]" />
                     </figure> <!-- posibil galerie bootstrap -->
