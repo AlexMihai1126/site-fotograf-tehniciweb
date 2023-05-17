@@ -1,5 +1,5 @@
 html{
-    font-family: Quicksand;
+    font-family: 'Lato', sans-serif;
     transition: font-size 0.15s linear;
 } /* marime font baza pagina */
 
@@ -17,6 +17,9 @@ body{
     --selection_text_col:#01595C;
     --selection_text_bg:#03d4db4d;
     --hr_circle_color:rgba(2,150,156,1);
+    --form_border:#02BBC2;
+    --form_bg:#03D4DB;
+    --form_bg_focus:#01595C;
     background-color: var(--body_color);
     color: var(--text_color);
     padding-left: var(--spatiere_pag);
@@ -37,11 +40,33 @@ body.dark{
     --selection_text_col:#1DE9B6;
     --selection_text_bg:#004D404d;
     --hr_circle_color:#1DE9B6;
+    --form_border:#004D40;
+    --form_bg:#4DB6AC;
+    --form_bg_focus:#00695C;
     background-color: var(--body_color);
     color: var(--text_color);
 }
 
 body.colorful{
+    --body_color:#193D45;
+    --text_color:#FF8322;
+    --main_color: #64C6BE;
+    --hover_color:#90D3CD;
+    --clicked_link: #F9ED32;
+    --accent_color:#90D3CD;
+    --menu_item_color:#64C6BE;
+    --link_hover_gr:#90D3CD40;
+    --selection_text_col:#64C6BE;
+    --selection_text_bg:#FF832240;
+    --hr_circle_color:#FF8322;
+    --form_border:#FF8322;
+    --form_bg:#90D3CD;
+    --form_bg_focus:#64C6BE;
+    background-color: var(--body_color);
+    color: var(--text_color);
+}
+
+body.colorful2{
     --body_color:#FFF3E0;
     --text_color:#000000;
     --main_color: #D32F2F;
@@ -55,6 +80,28 @@ body.colorful{
     --hr_circle_color:#EF6C00;
     background-color: var(--body_color);
     color: var(--text_color);
+}
+
+body.colorful3{
+    --link_hover_gr:#02979c85;
+    --body_color:#193D45;
+    --text_color:#FFFFFF;
+    --spatiere_pag: 50px; /*et3 t1*/
+    --padding_section: 15px;/*et3 t1*/
+    --main_color: #03D4DB;
+    --hover_color:#02969C;
+    --clicked_link: #01595C;
+    --accent_color:#02BBC2;
+    --menu_item_color:#02E0E8;
+    --selection_text_col:#01595C;
+    --selection_text_bg:#03d4db4d;
+    --hr_circle_color:rgba(2,150,156,1);
+    background-color: var(--body_color);
+    color: var(--text_color);
+    padding-left: var(--spatiere_pag);
+    padding-right: var(--spatiere_pag);
+    min-width: 450px;
+    margin: 10px;
 }
 
 h1.main_heading {
@@ -349,5 +396,24 @@ hr::before{
 kbd{
     background-color: var(--main_color);
     color: var(--text_color);
-    font-family: Quicksand;
+    font-family: Lato;
+}
+
+label{
+    color: var(--text_color);
+}
+
+.form-control{
+    border:var(--form_border);
+    background-color: var(--form_bg);
+    color: var(--text_color);
+}
+.form-control:focus{
+    background-color: var(--form_bg_focus);
+}
+
+.form-select{
+    border:var(--form_border);
+    background-color: var(--form_bg);
+    color: var(--text_color);
 }

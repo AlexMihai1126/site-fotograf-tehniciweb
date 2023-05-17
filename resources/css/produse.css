@@ -60,20 +60,13 @@ main{
 .produs{
     position: relative;
 }
-.selecteaza-cos{
-    display: inline-block;
-    background-color: var(--culoare-mov);
-    position:absolute;
-    bottom:0.5rem;
-    right:0.5rem;
-    border-radius: 0.5rem;
-    text-align: center;
-    padding:0.3rem;
-    border:1px solid transparent;
+
+
+.nume_pr{
+    color: var(--main_color);
+    font-weight: bold;
 }
 
-.selecteaza-cos:hover{
-    background-color: var(--cl-marcare);
-    
-    border:1px solid  var(--culoare-mov);
+.hidden_row{
+    display: none;
 }
