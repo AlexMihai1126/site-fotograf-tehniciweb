@@ -21,14 +21,14 @@ class AccesBD{
     }
 
     initLocal(){
-        this.client= new Client({database:"laborator",
-            user:"irina", 
-            password:"irina", 
+        this.client= new Client({database:"proiectweb",
+            user:"alexm1", 
+            password:"1234", 
             host:"localhost", 
             port:5432});
-        this.client2= new Pool({database:"laborator",
-                user:"irina", 
-                password:"irina", 
+        this.client2= new Pool({database:"proiectweb",
+                user:"alexm1", 
+                password:"1234", 
                 host:"localhost", 
                 port:5432});
         this.client.connect();

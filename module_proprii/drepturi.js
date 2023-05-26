@@ -19,6 +19,6 @@ const Drepturi = {
 	stergereUtilizatori: Symbol("stergereUtilizatori"),
 	cumparareProduse: Symbol("cumparareProduse"),
 	vizualizareGrafice: Symbol("vizualizareGrafice")
-}
+}//symbol este ca un string dar nu returneaza true la == decat daca este ACEEASI INSTANTA a obiectului
 
 module.exports=Drepturi;

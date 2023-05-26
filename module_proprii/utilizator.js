@@ -10,7 +10,7 @@ class Utilizator{
     static tipConexiune="local";
     static tabel="utilizatori"
     static parolaCriptare="tehniciweb";
-    static emailServer="test.tweb.node@gmail.com";
+    static emailServer="site.tehweb23.am@gmail.com"; //adresa de mail de pe care se trimite
     static lungimeCod=64;
     static numeDomeniu="localhost:8080";
     #eroare;
@@ -27,9 +27,9 @@ class Utilizator{
 
         for(let prop in arguments[0]){
             this[prop]=arguments[0][prop]
-        }
+        }//fiecare element din functia "constructor"
         if(this.rol)
-            this.rol=this.rol.cod? RolFactory.creeazaRol(this.rol.cod):  RolFactory.creeazaRol(this.rol);
+            this.rol=this.rol.cod? RolFactory.creeazaRol(this.rol.cod):  RolFactory.creeazaRol(this.rol); //devine instanta a clasei rolului
         console.log(this.rol);
 
         this.#eroare="";
@@ -77,7 +77,8 @@ class Utilizator{
                 email:this.email,
                 culoare_chat:this.culoare_chat,
                 cod:token,
-                poza:this.poza}, function(err, rez){
+                poza:this.poza}
+            }, function(err, rez){
             if(err)
                 console.log(err);
             
@@ -95,7 +96,7 @@ class Utilizator{
             secure: false,
             auth:{//date login 
                 user:Utilizator.emailServer,
-                pass:"rwgmgkldxnarxrgu"
+                pass:"glodfzcwuxebmvnp"
             },
             tls:{
                 rejectUnauthorized:false
@@ -138,7 +139,7 @@ class Utilizator{
     static getUtilizDupaUsername (username,obparam, proceseazaUtiliz){
         if (!username) return null;
         let eroare=null;
-        AccesBD.getInstanta(Utilizator.tipConexiune).select({tabel:"utilizatori",campuri:['*'],conditiiAnd:[`username=$1`]}, function (err, rezSelect){
+        AccesBD.getInstanta(Utilizator.tipConexiune).select({tabel:"utilizatori",campuri:['*'],conditiiAnd:[`username='${username}'`]}, function (err, rezSelect){
             if(err){
                 console.error("Utilizator:", err);
                 console.log("Utilizator",rezSelect.rows.length);
@@ -151,7 +152,7 @@ class Utilizator{
             //constructor({id, username, nume, prenume, email, rol, culoare_chat="black", poza}={})
             let u= new Utilizator(rezSelect.rows[0])
             proceseazaUtiliz(u, obparam, eroare);
-        }, [username]);
+        });
     }
 
     areDreptul(drept){

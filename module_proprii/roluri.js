@@ -6,7 +6,7 @@ class Rol{
     static get tip() {return "generic"}
     static get drepturi() {return []}
     constructor (){
-        this.cod=this.constructor.tip;
+        this.cod=this.constructor.tip; //seteaza proprietatea cod
     }
 
     areDreptul(drept){ //drept trebuie sa fie tot Symbol
@@ -57,7 +57,7 @@ class RolFactory{
             case RolClient.tip : return new RolClient();
         }
     }
-}
+} //daca facem cu sequelize asta se face singleton
 
 
 module.exports={
