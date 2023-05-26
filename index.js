@@ -4,6 +4,12 @@ const path = require('path');
 const sharp = require('sharp');
 const sass = require('sass');
 const {Client} = require('pg');
+const formidable=require("formidable");
+const {Utilizator}=require("./module_proprii/utilizator.js")
+const session=require('express-session');
+const Drepturi = require("./module_proprii/drepturi.js");
+const AccesBD= require("./module_proprii/accesbd.js");
+
 
 var client= new Client({database:"proiectweb",
         user:"alexm1",
@@ -78,7 +84,7 @@ console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
 console.log("Current working directory", process.cwd());
 
-vectorFolders=["temp", "temp1","bkp"];
+vectorFolders=["temp", "temp1","bkp", "poze_uploadate"];
 
 for(let folder_for of vectorFolders){
     let folderPath = path.join(__dirname,folder_for);
@@ -115,6 +121,109 @@ app.get("/favicon.ico",function(req,res){
 app.get(["/index","/","/home"], function(req, res){
     res.render("pages/index", {ip: req.ip, imagini:globalObj.imgObj.imagini});
 })
+
+app.post("/inregistrare",function(req, res){
+    var username;
+    var poza;
+    console.log("ceva");
+    var formular= new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campuriFisier ){//4
+        console.log("Inregistrare:",campuriText);
+
+        console.log(campuriFisier);
+        var eroare="";
+
+        var utilizNou=new Utilizator();
+        try{
+            utilizNou.setareNume=campuriText.nume; //apelam setter, parametru este dupa egal
+            utilizNou.setareUsername=campuriText.username;
+            utilizNou.email=campuriText.email
+            utilizNou.prenume=campuriText.prenume
+            
+            utilizNou.parola=campuriText.parola;
+            utilizNou.culoare_chat=campuriText.culoare_chat;
+            utilizNou.poza= poza;
+            Utilizator.getUtilizDupaUsername(campuriText.username, {}, function(u, parametru , eroareUser){
+                if (eroareUser==-1){//nu exista username-ul in BD
+                    utilizNou.salvareUtilizator();
+                }
+                else{
+                    eroare+="Mai exista username-ul";
+                }
+
+                if(!eroare){
+                    res.render("pages/inregistrare", {raspuns:"Inregistrare cu succes!"})
+                    
+                }
+                else
+                    res.render("pages/inregistrare", {err: "Eroare: "+eroare});
+            })
+            
+
+        }
+        catch(e){ 
+            console.log(e);
+            eroare+= "Eroare site; reveniti mai tarziu";
+            console.log(eroare);
+            res.render("pages/inregistrare", {err: "Eroare: "+eroare})
+        }
+    
+
+
+
+    });
+    formular.on("field", function(nume,val){  // 1 
+	
+        console.log(`--- ${nume}=${val}`);
+		
+        if(nume=="username")
+            username=val;
+    }) 
+    formular.on("fileBegin", function(nume,fisier){ //2
+        console.log("fileBegin");
+		
+        console.log(nume,fisier);
+		//TO DO in folderul poze_uploadate facem folder cu numele utilizatorului
+        let folderUser=path.join(__dirname, "poze_uploadate",username);
+        //folderUser=__dirname+"/poze_uploadate/"+username
+        console.log(folderUser);
+        if (!fs.existsSync(folderUser))
+            fs.mkdirSync(folderUser);
+        fisier.filepath=path.join(folderUser, fisier.originalFilename)
+        poza=fisier.originalFilename
+        //fisier.filepath=folderUser+"/"+fisier.originalFilename
+
+    })    
+    formular.on("file", function(nume,fisier){//3
+        console.log("file");
+        console.log(nume,fisier);
+    }); 
+});
+
+app.get("/cod/:username/:token",function(req,res){
+    console.log(req.params);
+    try {
+        Utilizator.getUtilizDupaUsername(req.params.username,{res:res,token:req.params.token} ,function(u,obparam){
+            AccesBD.getInstanta().update(
+                {tabel:"utilizatori",
+                campuri:{confirmat_mail:'true'}, 
+                conditiiAnd:[`cod='${obparam.token}'`]}, 
+                function (err, rezUpdate){
+                    if(err || rezUpdate.rowCount==0){
+                        console.log("Cod:", err);
+                        afisareEroare(res,3);
+                    }
+                    else{
+                        res.render("pages/confirmare.ejs");
+                    }
+                })
+        })
+    }
+    catch (e){
+        console.log(e);
+        renderError(res,2);
+    }
+});
 
 //app.get(/\.ejs$/) - cu regexp
 app.get("/*.ejs", function(req,res){
@@ -199,6 +308,8 @@ app.get("/*",function(req, res){
     
  
 });
+
+
 
 function compileScss(pathScss, reason, pathCss){
     if(!pathCss){
