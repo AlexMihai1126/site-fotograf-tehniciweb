@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <link rel="stylesheet" href="/resources/css/produse2.css" type="text/css" />
+        <title>Servicii | Alex Mihai - Fotograf</title>
+        <%- include("../fragments/head") %>     
+        <script type="text/javascript" src=/resources/js/services2.js></script>
+    </head>
+    <body>
+    <%- include("../fragments/header") %>
+    <%- include("../fragments/nav") %>
+    <div id="eroarePlaceholder"></div>
+    <% if(locals.err){ %>
+        <div class="alert alert-danger" role="alert">Nu exista rezultate!</div>
+    <%}%> <!--genereaza o eroare daca nu sunt disponibile produse de afisat pentru tipul ales cu ?type=<tip>-->
+        
+    <main>
+        <div id="filtrari" class="container">
+            <div class="row">
+                <div class="col-4"> <!--textbox si textarea-->
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="inp-nume"  placeholder="nume serviciu cautat">
+                        <label for="inp-nume">Nume produs</label>
+                    </div>
+                    <br>
+                    <div class="form-floating">
+                        <textarea class="form-control" id="inp-desc" placeholder="descriere produs cautat"></textarea>
+                        <label for="inp-desc">Descriere produs</label>
+                    </div>
+                </div>
+
+                <div class="col-4"><!--radios si checkboxes-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="btn-group" role="group">
+                                <input class="btn-check" type="radio" name="gr_rad" id="i_rad4" value="toate" checked autocomplete="off">
+                                <label class="btn btn-outline-primary" for="i_rad4">Toate</label>
+                                <input class="btn-check" type="radio" name="gr_rad" id="i_rad1" value="0:2" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="i_rad1">Scurt (durata &lt; 2h)</label>
+                                <input class="btn-check" type="radio" name="gr_rad" id="i_rad2" value="2:4" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="i_rad2">Mediu (2h &le; durata &lt; 4h)</label>
+                                <input class="btn-check" type="radio" name="gr_rad" id="i_rad3" value="4:1000000000" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="i_rad3">Lung (durata &ge; 4h )</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="btn-group" role="group">
+                                <input id="i_check1" name="gr_chck" checked value="o_zi" type="checkbox" class="btn-check" autocomplete="off"> 
+                                <label class="btn btn-outline-primary" for="i_check1">Photoshoot o zi</label>
+                                <input id="i_check2" name="gr_chck" checked value="mai_multe_zile" type="checkbox" class="btn-check" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="i_check2">Photoshoot mai multe zile</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-4"> <!--selecturi si datalist-->
+                    <label class="form-label" for="inp-categorie">Categorie photoshoot (select simplu):</label>:
+                    <select class="form-select" id="inp-categorie">
+                        <option id="sel-toate" selected value="toate">toate</option>
+                        <% for (let opt of locals.optiuniMeniu2) { %>
+                            <option value="<%- opt.unnest %>"><%- opt.unnest %> </option>
+                        <% } %>
+                    </select>
+                    <label class="form-label" for="i_sel_multiplu">Accesorii pe care nu le doriti (select multiplu):</label>
+                    <select class="form-select" id="i_sel_multiplu" multiple size="4">
+                        <% for(let elem1 of locals.acc){
+                            for(let elem2 of elem1.accesorii){ %>
+                                <option value="<%-elem2%>"><%-elem2%></option>
+                        <% }} %>
+                    </select>
+    
+                    <label class="form-label" for="i_datalist">Tip photoshoot (datalist):</label>
+                    <input class="form-control" list="id_lista" id="i_datalist" placeholder="Cauta tipuri de photoshoot">
+                    <datalist id="id_lista">
+                        <% for (let opt of locals.optiuniMeniu) { %>
+                            <option value="<%- opt.unnest %>"><%- opt.unnest %></option>
+                        <% } %>
+                    </datalist>
+                </div>
+            <div class="row">
+                <div class="col-6">
+                    <label for="inp-pret" class="form-label">Pret maxim (lei): </label> <span id="infoRange">(0)</span>
+                    <input type="range" class="form-range" id="inp-pret" value="<%- locals.preturi_range[0].max %>" min= "<%- locals.preturi_range[0].min %>"  max="<%- locals.preturi_range[0].max %>">
+                </div>
+                <div class="col-6">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-primary" id="filtrare"><i class="bi bi-funnel"></i> Filtreaza</button>
+                        <button type="button" class="btn btn-outline-primary" id="resetare"><i class="bi bi-arrow-clockwise"></i> Reseteaza</button>
+                        <button type="button" class="btn btn-outline-info" id="sortCrescNume"><i class="bi bi-sort-numeric-up"></i> Sorteaza crescator dupa pret si categorie</button>
+                        <button type="button" class="btn btn-outline-info" id="sortDescrescNume"><i class="bi bi-sort-numeric-down-alt"></i>Sorteaza descrescator dupa pret si categorie</button>
+                    </div>
+                    <p id="p-suma">Apăsați <kbd>Alt+C</kbd> pentru suma preturilor produselor afișate.</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <section id="produse">
+            <h2>Servicii oferite</h2>
+            <div class="container">
+                <div class="row row-cols-3">
+                    <% for (let prod of locals.produse) { %>
+                    <div class="col-12 col-xl-3 col-lg-4 col-md-6 produs" style="margin-bottom: 1rem;" id="ar_ent_<%-prod.id %>" name="<%-prod.nume%>">
+                        <div class="card" style="border-radius: 0.7rem;">
+                        <img src="/resources/img/servicii/<%- prod.imag %>"  style="border-top-right-radius: 0.7rem; border-top-left-radius: 0.7rem ;" class="card-img-top img-fluid" alt="[imagine <%- prod.nume %>]">
+                        <div class="card-body">
+                            <h2 class="card-title val-nume nume_pr"><%- prod.nume%></h2>
+                            <h5 class="card-subtitle mb-2 text-body-secondary val-categorie nume_pr"><%- prod.categ%></h5> 
+                            <p class="card-text hidden_row">Descriere: <span class="val-desc"><%- prod.descr%></span></p>
+                        </div>
+                        <% let d=new Date(prod.data_ad).getTime();
+                            var date = new Date(d);
+                            var timeStampVector= date.toString().split(" ");
+                            var zi_s=["Luni","Marti","Miercuri","Joi","Vineri","Sambata","Duminica"];
+                            var data_adaugare=timeStampVector[2] + "-" + timeStampVector[1]+ "-" + timeStampVector[3] + "[" + zi_s[date.getDay()] +"]"
+                            let extins="";
+                            let acc_disp=[];
+                            let ore="ora";
+                            if(prod.extins){
+                                extins="da";
+                            }else{
+                                extins="nu";
+                            }
+                            if(prod.accesorii==""){
+                                acc_disp="nu sunt necesare";
+                            }else{
+                                acc_disp=prod.accesorii;
+                            } 
+                            if(prod.durata!=1){
+                                ore="ore";
+                            }
+                            %>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Durata: <span class="val-durata"><%- prod.durata%></span> <%-ore%></li>
+                            <li class="list-group-item">Accesorii: <span class="val-acc hidden_row"><%- prod.accesorii%></span><span><%-acc_disp%></span></li>
+                            <li class="list-group-item">Locatie: <span class="val-locatie"><%- prod.locatie%></span></li>
+                            <li class="list-group-item">Data adaugarii: <time id="val-data" datetime="<%- d %>"><%- data_adaugare %></time></li>
+                            <li class="list-group-item">Este pe mai multe zile?: <span class="val-ext hidden_row"><%- prod.extins%></span><span><%- extins%></span></li>
+                            <li class="list-group-item">Tip photoshoot: <span class="val-tip"><%- prod.tip_p%></span></li>
+                            <li class="list-group-item">Pret: <span class="val-pret"><%- prod.pret%></span> lei</li>
+                        </ul>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a class="btn btn-outline-secondary" href="/product2/<%-prod.id %>">Vezi detalii</a>
+                                <input type="checkbox" class="btn-check" id="adauga_cos<%-prod.id %>" value="<%-prod.id %>" autocomplete="off">
+                                <label class="btn btn-outline-primary" for="adauga_cos<%-prod.id %>">Adauga in cos</label>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </main>
+    </body>
+    <%- include("../fragments/footer") %>
+</html>
