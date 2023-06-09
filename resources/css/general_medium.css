@@ -1,6 +1,5 @@
 html{
     font-size: 12px;
-    font-family: Quicksand;
 }
 
 body{
@@ -22,4 +21,8 @@ img{
     width: 100%;
     max-width: 400px;
     min-width: 150px;
+}
+
+#banner_container{
+    animation: none
 }

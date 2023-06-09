@@ -1,5 +1,3 @@
-
-
 //setCookie("a",10, 1000)
 function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
     d=new Date();
@@ -21,14 +19,22 @@ function deleteCookie(nume){
     document.cookie=`${nume}=0; expires=${(new Date()).toUTCString()}`;
 }
 
+function deleteAllCookies(){
+    let v_cookies=document.cookie.split(";");
+    for(let cookie of v_cookies){
+        let numeC=cookie.split("=")[0];
+        deleteCookie(numeC);
+    }
+}
 
-window.addEventListener("load", function(){
+
+window.addEventListener("DOMContentLoaded", function(){
     if (getCookie("acceptat_banner")){
-        document.getElementById("banner").style.display="none";
+        document.getElementById("banner_container").style.display="none";
     }
 
-    this.document.getElementById("ok_cookies").onclick=function(){
+    this.document.getElementById("btn-cookies").onclick=function(){
         setCookie("acceptat_banner",true,60000);
-        document.getElementById("banner").style.display="none"
+        document.getElementById("banner_container").style.display="none"
     }
 })

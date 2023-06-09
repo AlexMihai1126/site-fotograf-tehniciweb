@@ -1,6 +1,5 @@
 html{
     font-size: 10px;
-    font-family: Quicksand;
 }
 
 body{
@@ -52,4 +51,8 @@ body *{
 
 #t1{
     width: 600px;
+}
+
+#banner_container{
+    animation: none
 }

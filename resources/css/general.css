@@ -417,3 +417,52 @@ label{
     background-color: var(--form_bg);
     color: var(--text_color);
 }
+
+#banner_container{
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    left:25px;
+    color: black;
+    opacity: 0.75;
+    width: 25vw;
+    height: 25vw;
+    background-color: var(--main_color);
+    text-align: center;
+    transform-origin: bottom left;
+    animation-name: banner_animatie;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    padding-top: calc(0.375*25vw);
+}
+
+@keyframes banner_animatie {
+    0%{
+        opacity: 0%;
+        transform: scale(0,0);
+        background-color: var(--body_color);
+    }
+    25%{
+        opacity: 0.25;
+        transform: scale(0.25,0.25);
+        background-color: var(--accent_color);
+    }
+    50%{
+        opacity: 0.4;
+        transform: scale(0.5,0.5);
+        background-color: var(--clicked_link);
+    }
+    75%{
+        opacity: 0.55;
+        transform: scale(0.75,0.75);
+        background-color: var(--hover_color);
+    }
+    100%{
+        opacity: 0.75;
+        transform: scale(1,1);
+        background-color: var(--main_color);
+    }
+
+}
