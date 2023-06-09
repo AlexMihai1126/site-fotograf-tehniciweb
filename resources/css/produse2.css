@@ -1,0 +1,14 @@
+main{
+    --padd-main:1rem;
+    padding-left:var(--padd-main);
+    padding-right:var(--padd-main);
+}
+
+.nume_pr{
+    color: var(--main_color);
+    font-weight: bold;
+}
+
+.hidden_row{
+    display: none;
+}
