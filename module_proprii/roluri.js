@@ -32,7 +32,10 @@ class RolModerator extends Rol{
     static get tip() {return "moderator"}
     static get drepturi() { return [
         Drepturi.vizualizareUtilizatori,
-        Drepturi.stergereUtilizatori
+        Drepturi.stergereUtilizatori,
+        Drepturi.vizualizareFacturi,
+        Drepturi.vizualizareGalerie,
+        Drepturi.trimitereCerereContact
     ] }
     constructor (){
         super()
@@ -42,7 +45,9 @@ class RolModerator extends Rol{
 class RolClient extends Rol{
     static get tip() {return "comun"}
     static get drepturi() { return [
-        Drepturi.cumparareProduse
+        Drepturi.cumparareProduse,
+        Drepturi.vizualizareGalerie,
+        Drepturi.trimitereCerereContact
     ] }
     constructor (){
         super()
