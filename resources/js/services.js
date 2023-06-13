@@ -31,8 +31,8 @@ function rst(){
 function filtrare(){
     rstErr();
 
-    let val_nume = document.getElementById("inp-nume").value.toLowerCase();
-    let val_descriere = document.getElementById("inp-desc").value.toLowerCase().trim();
+    let val_nume = document.getElementById("inp-nume").value.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    let val_descriere = document.getElementById("inp-desc").value.toLowerCase().trim().normalize("NFD").replace(/\p{Diacritic}/gu, ""); //bonus 7
     if(val_nume.search(/,|;|\.|\||!|@|'|`|:|[0-9]/gmi)!=-1){
         document.getElementById("inp-nume").classList.add("is-invalid");
         return;
@@ -147,8 +147,43 @@ function sorteaza(semn){
     }      
 }
 
-
 window.addEventListener("DOMContentLoaded", function(){
+
+    let iduriProduse=localStorage.getItem("cos_virtual");
+    iduriProduse=iduriProduse?iduriProduse.split(","):[];      //["3","1","10","4","2"]
+
+    for(let idp of iduriProduse){
+        let ch = document.querySelector(`[value='${idp}'].select-cos`);
+        if(ch){
+            ch.checked=true;
+        }
+        else{
+            console.log("id cos virtual inexistent:", idp);
+        }
+    }
+
+    //----------- adaugare date in cosul virtual (din localStorage)
+    let checkboxuri= document.getElementsByClassName("select-cos");
+    for(let ch of checkboxuri){
+        ch.onchange=function(){
+            let iduriProduse=localStorage.getItem("cos_virtual");
+            iduriProduse=iduriProduse?iduriProduse.split(","):[];
+
+            if( this.checked){
+                iduriProduse.push(this.value)
+            }
+            else{
+                let poz= iduriProduse.indexOf(this.value);
+                if(poz != -1){
+                    iduriProduse.splice(poz,1);
+                }
+            }
+
+            localStorage.setItem("cos_virtual", iduriProduse.join(","))
+        }
+        
+    }
+
     document.getElementById("infoRange").innerHTML = `(${document.getElementById("inp-pret").max})`;
     document.getElementById("filtrare").onclick = filtrare;
  

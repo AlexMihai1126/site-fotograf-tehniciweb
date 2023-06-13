@@ -31,8 +31,8 @@ function rst(){
 function filtrare(){
     rstErr();
 
-    let val_nume = document.getElementById("inp-nume").value.toLowerCase();
-    let val_descriere = document.getElementById("inp-desc").value.toLowerCase().trim();
+    let val_nume = document.getElementById("inp-nume").value.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    let val_descriere = document.getElementById("inp-desc").value.toLowerCase().trim().normalize("NFD").replace(/\p{Diacritic}/gu, ""); //bonus 7
     if(val_nume.search(/,|;|\.|\||!|@|'|`|:|[0-9]/gmi)!=-1){
         document.getElementById("inp-nume").classList.add("is-invalid");
         return;
