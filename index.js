@@ -40,7 +40,8 @@ globalObj={
     menuOptions: [],
     menuOptions2: [],
     pretMinMax:[],
-    accesoriiPhotoShoot:[]
+    accesoriiPhotoShoot:[],
+    nume_lista:[]
 }
 
 client.query("select * from unnest(enum_range(null::tip_photoshoot))", function(err,rezTipuri){
@@ -80,6 +81,15 @@ client.query("select accesorii from servicii", function(err,rezAcc){
     }
 });
 
+client.query("select nume from servicii", function(err,rezNume){
+    if(err){
+        console.log(err);
+    }
+    else{
+        globalObj.nume_lista=rezNume.rows;
+    }
+});
+
 console.log("Folder proiect", __dirname);
 console.log("Cale fisier", __filename);
 console.log("Current working directory", process.cwd());
@@ -94,12 +104,21 @@ for(let folder_for of vectorFolders){
 }
 
 app.set("view engine","ejs");
+app.use(session({ // aici se creeaza proprietatea session a requestului (pot folosi req.session)
+    secret: 'abcdefg',//folosit de express session pentru criptarea id-ului de sesiune
+    resave: true,
+    saveUninitialized: false
+  }));
 
 app.use("/resources", express.static(__dirname+"/resources")); //trimite toate fisierele din resurse
 app.use("/node_modules", express.static(__dirname+"/node_modules"));
 
 app.use("/*", function(req, res, next){
     res.locals.optiuniMeniu=globalObj.menuOptions;
+    res.locals.Drepturi=Drepturi;
+    if (req.session.utilizator){
+        req.utilizator=res.locals.utilizator=new Utilizator(req.session.utilizator);
+    }   
     next();
 });
 
@@ -107,6 +126,17 @@ app.use("/services", function(req, res, next){
     res.locals.optiuniMeniu2=globalObj.menuOptions2;
     res.locals.acc=globalObj.accesoriiPhotoShoot;
     res.locals.preturi_range=globalObj.pretMinMax;
+    res.locals.nume_l=globalObj.nume_lista;
+    res.locals.desc_l=globalObj.desc_lista;
+    next();
+});
+
+app.use("/services2", function(req, res, next){
+    res.locals.optiuniMeniu2=globalObj.menuOptions2;
+    res.locals.acc=globalObj.accesoriiPhotoShoot;
+    res.locals.preturi_range=globalObj.pretMinMax;
+    res.locals.nume_l=globalObj.nume_lista;
+    res.locals.desc_l=globalObj.desc_lista;
     next();
 });
 
@@ -118,8 +148,10 @@ app.get("/favicon.ico",function(req,res){
     res.sendFile(__dirname+"/resources/img/favicon/favicon.ico");
 })
 
-app.get(["/index","/","/home"], function(req, res){
-    res.render("pages/index", {ip: req.ip, imagini:globalObj.imgObj.imagini});
+app.get(["/index","/","/home","/login"], async function(req, res){
+    let sir=req.session.succesLogin;
+    req.session.succesLogin=null;
+    res.render("pages/index", {ip: req.ip, imagini:globalObj.imgObj.imagini, mesajLogin:sir});
 })
 
 app.post("/inregistrare",function(req, res){
@@ -168,9 +200,6 @@ app.post("/inregistrare",function(req, res){
             res.render("pages/inregistrare", {err: "Eroare: "+eroare})
         }
     
-
-
-
     });
     formular.on("field", function(nume,val){  // 1 
 	
@@ -199,6 +228,125 @@ app.post("/inregistrare",function(req, res){
         console.log(nume,fisier);
     }); 
 });
+
+app.post("/login",function(req, res){
+    var username;
+    console.log("ceva");
+    var formular= new formidable.IncomingForm()
+    formular.parse(req, function(err, campuriText, campuriFisier ){
+        Utilizator.getUtilizDupaUsername (campuriText.username,{
+            req:req,
+            res:res,
+            parola:campuriText.parola
+        }, function(u, obparam ){
+            let parolaCriptata=Utilizator.criptareParola(obparam.parola);
+            if(u.parola==parolaCriptata && u.confirmat_mail ){
+                u.poza=u.poza?path.join("poze_uploadate",u.username, u.poza):"";
+                obparam.req.session.utilizator=u;
+                
+                obparam.req.session.mesajLogin="Bravo! Te-ai logat!";
+                obparam.res.redirect("/index");
+                //obparam.res.render("/login");
+            }
+            else{
+                console.log("Eroare logare")
+                obparam.req.session.mesajLogin="Date logare incorecte sau nu a fost confirmat mailul!";
+                obparam.res.redirect("/index");
+            }
+        })
+    });
+});
+
+app.get("/logout", function(req, res){
+    req.session.destroy();
+    res.locals.utilizator=null;
+    res.render("pages/logout");
+});
+
+app.post("/profil", function(req, res){
+    console.log("profil");
+    if (!req.session.utilizator){
+        showErr(res,403)
+        res.render("pages/eroare_generala",{text:"Nu sunteti logat."});
+        return;
+    }
+    var formular= new formidable.IncomingForm();
+ 
+    formular.parse(req,function(err, campuriText, campuriFile){
+       
+        var parolaCriptata=Utilizator.criptareParola(campuriText.parola);
+        // AccesBD.getInstanta().update(
+        //     {tabel:"utilizatori",
+        //     campuri:["nume","prenume","email","culoare_chat"],
+        //     valori:[`${campuriText.nume}`,`${campuriText.prenume}`,`${campuriText.email}`,`${campuriText.culoare_chat}`],
+        //     conditiiAnd:[`parola='${parolaCriptata}'`]
+        // },  
+        AccesBD.getInstanta().updateParametrizat(
+            {tabel:"utilizatori",
+            campuri:["nume","prenume","email","culoare_chat"],
+            valori:[`${campuriText.nume}`,`${campuriText.prenume}`,`${campuriText.email}`,`${campuriText.culoare_chat}`],
+            conditiiAnd:[`parola='${parolaCriptata}'`,`username='${campuriText.username}'`]
+        }, 
+        function(err, rez){
+            if(err){
+                console.log(err);
+                showErr(res,2);
+                return;
+            }
+            console.log(rez.rowCount);
+            if (rez.rowCount==0){
+                res.render("pages/profil",{mesaj:"Update-ul nu s-a realizat. Verificati parola introdusa."});
+                return;
+            }
+            else{            
+                //actualizare sesiune
+                console.log("ceva");
+                req.session.utilizator.nume= campuriText.nume;
+                req.session.utilizator.prenume= campuriText.prenume;
+                req.session.utilizator.email= campuriText.email;
+                req.session.utilizator.culoare_chat= campuriText.culoare_chat;
+                res.locals.utilizator=req.session.utilizator;
+            }
+ 
+ 
+            res.render("pages/profil",{mesaj:"Update-ul s-a realizat cu succes."});
+ 
+        });
+       
+ 
+    });
+});
+
+app.get("/useri", function(req, res){
+   
+    if(req?.utilizator?.areDreptul?.(Drepturi.vizualizareUtilizatori)){
+        AccesBD.getInstanta().select({tabel:"utilizatori", campuri:["*"]}, function(err, rezQuery){
+            console.log(err);
+            res.render("pagini/useri", {useri: rezQuery.rows});
+        });
+    }
+    else{
+        afisareEroare(res, 403);
+    }
+});
+
+
+app.post("/sterge_utiliz", function(req, res){
+    if(req?.utilizator?.areDreptul?.(Drepturi.stergereUtilizatori)){
+        var formular= new formidable.IncomingForm();
+ 
+        formular.parse(req,function(err, campuriText, campuriFile){
+           
+                AccesBD.getInstanta().delete({tabel:"utilizatori", conditiiAnd:[`id=${campuriText.id_utiliz}`]}, function(err, rezQuery){
+                console.log(err);
+                res.redirect("/useri");
+            });
+        });
+    }else{
+        afisareEroare(res,403);
+    }
+})
+
 
 app.get("/cod/:username/:token",function(req,res){
     console.log(req.params);
@@ -271,6 +419,29 @@ app.get(["/services"],function(req, res){
     });
 }); 
 
+app.get(["/services2"],function(req, res){
+    client.query("select * from unnest(enum_range(null::tip_photoshoot))", function(err,rezCategorie){
+        let conditieWhere="";
+        if(req.query.type){
+            conditieWhere=` where tip_p ='${req.query.type}'`;
+            //console.log(req.query.type);
+        }//pentru a vedea doar serviciile de un anumit tip (cand alegem din meniu) - individual/grup/cuplu
+        client.query("select * from servicii"+ conditieWhere , function(err, rez){
+            //console.log(300);
+            if(err){
+                console.log(err);
+                showErr(res, 2);
+            }
+            else
+            if(rez.rowCount==0){
+                res.render("pages/services_cards", {produse:rez.rows, optiuni:rezCategorie.rows, err:"Nu exista produse"});
+            }else{
+                res.render("pages/services_cards", {produse:rez.rows, optiuni:rezCategorie.rows});
+            }
+        });
+    });
+});
+
 app.get("/product/:id",function(req, res){
     //console.log(req.params);
     client.query(` select * from servicii where id = ${req.params.id} `, function (err, rez){
@@ -280,6 +451,18 @@ app.get("/product/:id",function(req, res){
         }
         else
             res.render("pages/product", {prod:rez.rows[0]});
+    });
+}); //pagina dedicata produsului
+
+app.get("/product2/:id",function(req, res){
+    //console.log(req.params);
+    client.query(` select * from servicii where id = ${req.params.id} `, function (err, rez){
+        if(err){
+            console.log(err);
+            showErr(res, 2);
+        }
+        else
+            res.render("pages/product2", {prod:rez.rows[0]});
     });
 }); //pagina dedicata produsului
 

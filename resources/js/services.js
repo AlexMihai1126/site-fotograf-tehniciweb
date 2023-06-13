@@ -149,7 +149,7 @@ function sorteaza(semn){
 
 window.addEventListener("DOMContentLoaded", function(){
 
-    let iduriProduse=localStorage.getItem("cos_virtual");
+    /* let iduriProduse=localStorage.getItem("cos_virtual");
     iduriProduse=iduriProduse?iduriProduse.split(","):[];      //["3","1","10","4","2"]
 
     for(let idp of iduriProduse){
@@ -160,7 +160,7 @@ window.addEventListener("DOMContentLoaded", function(){
         else{
             console.log("id cos virtual inexistent:", idp);
         }
-    }
+    } */
 
     //----------- adaugare date in cosul virtual (din localStorage)
     /* let checkboxuri= document.getElementsByClassName("select-cos");
@@ -183,7 +183,11 @@ window.addEventListener("DOMContentLoaded", function(){
         }
         
     } */
-
+    if(getCookie("ultimul_produs_vizitat")){
+        this.document.getElementById("link_ultimul_prod").style.display="block";
+        this.document.getElementById("link_ultimul_prod").setAttribute("href",getCookie("ultimul_produs_vizitat"));;
+    }
+    
     document.getElementById("infoRange").innerHTML = `(${document.getElementById("inp-pret").max})`;
     document.getElementById("filtrare").onclick = filtrare;
  

@@ -6,7 +6,7 @@ for(let interval of v_intervale){
         sirAlphaNum+=String.fromCharCode(i)
 }
 
-console.log(sirAlphaNum);
+//console.log(sirAlphaNum);
 
 function genereazaToken(n){
     let token=""

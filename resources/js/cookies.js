@@ -1,8 +1,8 @@
 //setCookie("a",10, 1000)
 function setCookie(nume, val, timpExpirare){//timpExpirare in milisecunde
     d=new Date();
-    d.setTime(d.getTime()+timpExpirare)
-    document.cookie=`${nume}=${val}; expires=${d.toUTCString()}`;
+    d.setTime(d.getTime()+timpExpirare);
+    document.cookie=`${nume}=${val}; path=/; expires=${d.toUTCString()}`;
 }
 
 function getCookie(nume){
@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 
     this.document.getElementById("btn-cookies").onclick=function(){
-        setCookie("acceptat_banner",true,60000);
+        setCookie("acceptat_banner",true,(7*24*3600000)) //seteaza cookie pt 7 zile
         document.getElementById("banner_container").style.display="none"
     }
 })

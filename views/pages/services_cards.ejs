@@ -101,16 +101,82 @@
             </div>
             </div>
         </div>
+        <% for(let prod of locals.produse) { %>
+            <div class="modal fade" id="modal_prod<%-prod.id%>" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modal_prod_label<%-prod.id%>">Vizualizare serviciu <%-prod.nume%></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4">
+                                    <figure>
+                                        <a href="/product/<%-prod.id %>" ><img src="/resources/img/servicii/<%- prod.imag %>" style="width:50%;height:auto;" alt="[imagine <%- prod.nume %>]" /></a>
+                                    </figure>
+                                </div>
+                                <div class="col-8">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <p>Detalii despre produs:</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Descriere:</p></div>
+                                            <div class="col-9"><span class="descriere"><%- prod.descr %> </span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Accesorii:</p></div>
+                                            <div class="col-9"><span class="accesorii"><%- prod.accesorii %></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Tip:</p></div>
+                                            <div class="col-9"><span class="tip_p"><%- prod.tip_p %> </span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Categorie:</p></div>
+                                            <div class="col-9"><span class="categorie"><%- prod.categ %> </span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Durata:</p></div>
+                                            <div class="col-9"><span class="durata"><%- prod.durata %> </span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Este pe mai multe zile?:</p></div>
+                                            <div class="col-9"><span class="extins"><%- prod.extins %> </span></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"><p>Pret:</p></div>
+                                            <div class="col-9"><span class="pret"><%- prod.pret %> </span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Inchide</button>
+                            <button type="button" class="btn btn-outline-primary" id="adauga_cos_modal_<%prod.id%>">Adauga in cos</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        <%}%>
         <section id="produse">
             <h2>Servicii oferite</h2>
+            <a class="btn btn-outline-primary" role="button" href="" id="link_ultimul_prod" style="display: none;">Ultimul produs vizitat</a>
+            <br>
             <div class="container">
                 <div class="row row-cols-3">
                     <% for (let prod of locals.produse) { %>
                     <div class="col-12 col-xl-3 col-lg-4 col-md-6 produs" style="margin-bottom: 1rem;" id="ar_ent_<%-prod.id %>" name="<%-prod.nume%>">
-                        <div class="card" style="border-radius: 0.7rem;">
+                        <div class="card card_produs" style="border-radius: 0.7rem;display: none;">
                         <img src="/resources/img/servicii/<%- prod.imag %>"  style="border-top-right-radius: 0.7rem; border-top-left-radius: 0.7rem ;" class="card-img-top img-fluid" alt="[imagine <%- prod.nume %>]">
                         <div class="card-body">
-                            <h2 class="card-title val-nume nume_pr"><%- prod.nume%></h2>
+                            <a href="product2/<%-prod.id %>"><h2 class="card-title val-nume nume_pr"><%- prod.nume%></h2></a>
                             <h5 class="card-subtitle mb-2 text-body-secondary val-categorie nume_pr"><%- prod.categ%></h5> 
                             <p class="card-text hidden_row">Descriere: <span class="val-desc"><%- prod.descr%></span></p>
                         </div>
@@ -148,7 +214,7 @@
                         <div class="card-body">
                             <div class="d-grid gap-2">
                             <div class="btn-group" role="group" aria-label="">
-                                <a class="btn btn-outline-secondary" href="/product2/<%-prod.id %>">Vezi detalii</a>
+                                <button type="button" class="btn btn-outline-secondary" id="deschideModal<%-prod.id%>" data-bs-toggle="modal" data-bs-target="#modal_prod<%-prod.id%>">Vezi detalii</button>
                                 <input type="checkbox" class="btn-check" id="adauga_cos<%-prod.id %>" value="<%-prod.id %>" autocomplete="off">
                                 <label class="btn btn-outline-primary" for="adauga_cos<%-prod.id %>">Adauga in cos</label>
                             </div>

@@ -57,7 +57,7 @@ class Utilizator{
     }
 
     checkUsername(username){
-        return username!="" && username.match(new RegExp("^[A-Za-z0-9#_./]+$")) ;
+        return username!="" && username.match(new RegExp("/^[A-Za-z0-9#_./]+$"));
     }
 
     static criptareParola(parola){
@@ -87,7 +87,6 @@ class Utilizator{
             )
         });
     }
-//xjxwhotvuuturmqm
 
 
     async trimiteMail(subiect, mesajText, mesajHtml, atasamente=[]){
