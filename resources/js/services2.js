@@ -193,7 +193,7 @@ window.addEventListener("change", function(){
     document.getElementById("inp-pret").onchange = function(){
         document.getElementById("infoRange").innerHTML = `(${this.value})`;
         filtrare();
-    }//update valoare afisata input range
+    }//update valoare afisata input range //bonus 4 - pe toate cele 8 tipuri
 }); //pe change executa
 
 window.onkeydown = function(e){

@@ -163,7 +163,7 @@ window.addEventListener("DOMContentLoaded", function(){
     }
 
     //----------- adaugare date in cosul virtual (din localStorage)
-    let checkboxuri= document.getElementsByClassName("select-cos");
+    /* let checkboxuri= document.getElementsByClassName("select-cos");
     for(let ch of checkboxuri){
         ch.onchange=function(){
             let iduriProduse=localStorage.getItem("cos_virtual");
@@ -182,7 +182,7 @@ window.addEventListener("DOMContentLoaded", function(){
             localStorage.setItem("cos_virtual", iduriProduse.join(","))
         }
         
-    }
+    } */
 
     document.getElementById("infoRange").innerHTML = `(${document.getElementById("inp-pret").max})`;
     document.getElementById("filtrare").onclick = filtrare;
@@ -212,7 +212,7 @@ window.addEventListener("change", function(){
     document.getElementById("inp-pret").onchange = function(){
         document.getElementById("infoRange").innerHTML = `(${this.value})`;
         filtrare();
-    }//update valoare afisata input range
+    }//update valoare afisata input range //bonus 4 - pe toate cele 8 tipuri
 }); //pe change executa
 
 window.onkeydown = function(e){

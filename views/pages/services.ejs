@@ -18,14 +18,20 @@
             <div class="row">
                 <div class="col-4"> <!--textbox si textarea-->
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="inp-nume"  placeholder="nume serviciu cautat">
+                        <input type="text" class="form-control" id="inp-nume" list="inp_nume_list" placeholder="nume serviciu cautat">
                         <label for="inp-nume">Nume produs</label>
+                        <datalist id="inp_nume_list">
+                            <% for (let nume_li of locals.nume_l) { %>
+                            <option value="<%- nume_li.nume %>"><%- nume_li.nume %></option>
+                              <% } %>
+                          </datalist>
                     </div>
                     <br>
                     <div class="form-floating">
-                        <textarea class="form-control" id="inp-desc" placeholder="descriere produs cautat"></textarea>
+                        <textarea class="form-control" id="inp-desc" list="inp_desc_list" placeholder="descriere serviciu cautat"></textarea>
                         <label for="inp-desc">Descriere produs</label>
                     </div>
+
                 </div>
 
                 <div class="col-4"><!--radios si checkboxes-->
