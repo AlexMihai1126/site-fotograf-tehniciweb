@@ -2,9 +2,9 @@
 <html lang="ro">
 	<head>
 		<title>Profil</title>
-		<%- include("../fragmente/head") %>
+		<%- include("../fragments/head") %>
         
-		<link rel="stylesheet" type="text/css" href="/resurse/css/contact.css" />
+		<link rel="stylesheet" type="text/css" href="/resources/css/contact.css" />
 		<% if(locals.utilizator) { %>
 		<script>
 
@@ -26,7 +26,7 @@
 	</head>
 	<body class="container">
 		<header>
-			<%- include("../fragmente/header") %>
+			<%- include("../fragments/header") %>
 		</header>
 		<main>
 			<% if(locals.utilizator) { %>
@@ -36,12 +36,13 @@
 				<p><%= locals.raspuns %></p>
 				<img src="/<%- locals.utilizator.poza%>" alt="nu ati incarcat poza de profil" />
 			</section>
-			<%- include("../fragmente/formular",{action:"/profil"}) %>
-		</main>
+			<%- include("../fragments/formular",{action:"/profil"}) %>
+		
 		<% } else { %>
 			<p>Nu sunteti logat</p>
 		<% } %>
-		<%- include("../fragmente/footer") %>
-		
+		<p><%- locals.mesaj %></p>
+	</main>
+		<%- include("../fragments/footer") %>
 	</body>
 </html>

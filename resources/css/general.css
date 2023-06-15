@@ -286,6 +286,9 @@ table{
 
 .camera_icon{
     display: flex;
+    margin-top: var(--padding_section);
+    margin-left: 50%;
+    font-size: 1.25rem;
 }
 
 
@@ -465,4 +468,13 @@ label{
         background-color: var(--main_color);
     }
 
+}
+
+footer{
+    margin-top: var(--spatiere_pag);
+    margin-bottom: var(--spatiere_pag);
+    border: 1px solid var(--accent_color);
+    box-shadow: inset 0px 0px 10px 1px darkgray;
+    border-radius: 5px;
+    padding: var(--padding_section);
 }

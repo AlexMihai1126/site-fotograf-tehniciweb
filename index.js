@@ -519,6 +519,13 @@ function compileScss(pathScss, reason, pathCss){
     }
 
     rez=sass.compile(pathScss,{"sourceMap":true});
+    
+    // const sm = JSON.stringify(rez.sourceMap)
+    // const smBase64 = (Buffer.from(sm, 'utf8') || '').toString('base64')
+    // const smComment = '/*# sourceMappingURL=data:application/json;charset=utf-8;base64,' + smBase64 + ' */'
+    // css_f = rez.css.toString() + '\n'.repeat(2) + smComment
+    // fs.writeFileSync(pathCss,css_f);
+
     fs.writeFileSync(pathCss,rez.css);
     console.log("Fisierul SCSS",pathScss,"a fost compilat in",pathCss);
 } 
